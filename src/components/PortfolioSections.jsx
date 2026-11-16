@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
@@ -26,11 +26,33 @@ import Reveal from "./Reveal.jsx";
 import SectionHeading from "./SectionHeading.jsx";
 
 const serviceIcons = { Film, Instagram: FaInstagram, Youtube: FaYoutube, PanelsTopLeft, Sparkles, Palette };
+const HeroScene = lazy(() => import("./HeroScene.jsx"));
 
 export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [sceneVisible, setSceneVisible] = useState(false);
   const reduceMotion = useReducedMotion();
   const visualRef = useRef(null);
+  const scenePointerRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (reduceMotion || !visualRef.current) {
+      setSceneVisible(false);
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setSceneVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setSceneVisible(entry.isIntersecting);
+    }, { threshold: 0.1 });
+
+    observer.observe(visualRef.current);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
 
   useEffect(() => {
     if (reduceMotion || !visualRef.current) return undefined;
@@ -48,6 +70,19 @@ export function HeroSection() {
     }, 3200);
     return () => window.clearInterval(interval);
   }, [reduceMotion]);
+
+  const handleVisualPointerMove = (event) => {
+    const bounds = visualRef.current?.getBoundingClientRect();
+    if (!bounds) return;
+
+    scenePointerRef.current.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
+    scenePointerRef.current.y = 1 - ((event.clientY - bounds.top) / bounds.height) * 2;
+  };
+
+  const resetVisualPointer = () => {
+    scenePointerRef.current.x = 0;
+    scenePointerRef.current.y = 0;
+  };
 
   return (
     <>
@@ -87,7 +122,21 @@ export function HeroSection() {
           <div className="hero-footnote"><span className="tiny-rule" /> Building Digital Experiences Through Technology, Creativity &amp; Innovation.</div>
         </Reveal>
 
-        <Reveal as="div" className="hero-visual" ref={visualRef} aria-label="Amresh Chaurasiya, software developer and founder">
+        <Reveal
+          as="div"
+          className="hero-visual"
+          ref={visualRef}
+          aria-label="Amresh Chaurasiya, software developer and founder"
+          onPointerMove={handleVisualPointerMove}
+          onPointerLeave={resetVisualPointer}
+        >
+          <div className="hero-scene-wrap" aria-hidden="true">
+            {sceneVisible && !reduceMotion && (
+              <Suspense fallback={null}>
+                <HeroScene pointerRef={scenePointerRef} />
+              </Suspense>
+            )}
+          </div>
           <div className="visual-orbit orbit-one" />
           <div className="visual-orbit orbit-two" />
           <div className="tech-badge" aria-hidden="true"><span>&lt;/&gt;</span><b>AI / CODE</b></div>

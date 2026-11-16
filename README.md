@@ -1,6 +1,6 @@
 # Amresh Chaurasiya — Portfolio
 
-Responsive React portfolio built with Vite, Tailwind CSS, Framer Motion, GSAP, Lucide React and React Icons.
+Responsive React portfolio built with Vite, Tailwind CSS, Three.js with React Three Fiber and Drei, Framer Motion, GSAP, Lucide React and React Icons. The lazy-loaded 3D hero pauses when off-screen and respects reduced-motion preferences.
 
 ## Development
 

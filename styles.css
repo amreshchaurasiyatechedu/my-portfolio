@@ -62,7 +62,7 @@ img { display: block; max-width: 100%; }
 .hero-footnote { display: flex; align-items: center; gap: 11px; margin-top: 64px; color: #858a95; font-size: 10px; }
 .tiny-rule { width: 28px; height: 1px; background: var(--blue); }
 .hero-visual { position: relative; display: flex; min-height: 505px; align-items: center; justify-content: center; overflow: hidden; }
-.portrait-frame { position: relative; z-index: 1; width: min(390px, 76%); height: 460px; overflow: hidden; border-radius: 2px; background: #172539; box-shadow: 0 34px 70px rgba(41, 52, 81, .16); }
+.portrait-frame { position: relative; z-index: 1; width: min(350px, 70%); height: 430px; overflow: hidden; border-radius: 2px; background: #172539; box-shadow: 0 34px 70px rgba(41, 52, 81, .16); transform: translateX(-12px); }
 .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; filter: saturate(.8); }
 .portrait-shade { position: absolute; inset: 30% 0 0; background: linear-gradient(transparent, rgba(6, 12, 24, .8)); }
 .portrait-caption { position: absolute; right: 27px; bottom: 25px; left: 27px; display: flex; flex-direction: column; gap: 9px; color: white; }
@@ -263,7 +263,7 @@ img { display: block; max-width: 100%; }
   .hero { min-height: 650px; gap: 10px; }
   .hero h1 { font-size: clamp(48px, 7.5vw, 68px); }
   .hero-visual { min-height: 440px; }
-  .portrait-frame { width: 79%; height: 390px; }
+  .portrait-frame { width: 74%; height: 390px; }
   .visual-orbit { width: 340px; height: 340px; }
   .note-student { left: -10px; }
   .hero-note { padding: 11px; }
@@ -293,7 +293,7 @@ img { display: block; max-width: 100%; }
   .button { min-height: 45px; gap: 14px; padding-inline: 13px; font-size: 10px; }
   .hero-footnote { margin-top: 30px; font-size: 9px; }
   .hero-visual { min-height: 405px; margin-top: 12px; }
-  .portrait-frame { width: min(76%, 310px); height: 365px; }
+  .portrait-frame { width: min(76%, 310px); height: 365px; transform: translateX(-8px); }
   .portrait-caption b { font-size: 19px; }
   .visual-orbit { width: 310px; height: 310px; }
   .note-student { top: 50px; left: 0; }
@@ -396,6 +396,12 @@ body {
 .menu-toggle { color: var(--ink); }
 
 .hero { background: radial-gradient(ellipse at 76% 45%, rgba(34, 78, 162, .13), transparent 29rem); }
+.hero-visual { isolation: isolate; }
+.hero-scene-wrap { position: absolute; z-index: 1; inset: 0; overflow: hidden; opacity: .84; pointer-events: none; mix-blend-mode: screen; }
+.hero-scene-wrap canvas { display: block; width: 100% !important; height: 100% !important; }
+.portrait-frame { z-index: 2; }
+.visual-orbit { z-index: 0; }
+.visual-index { z-index: 3; }
 .eyebrow { color: #91a1bb; }
 .hero h1 span, .section-heading h2 span { color: #92a9d1; background: linear-gradient(100deg, #aab8d2 8%, #75a3ff 74%, #73e5f4); background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-intro, .body-copy { color: var(--muted); }
@@ -708,6 +714,7 @@ body {
   .hero-actions .button { min-height: 45px; padding-inline: 10px; font-size: 9px; }
   .hero-footnote { align-items: flex-start; margin-top: 22px; font-size: 8px; line-height: 1.6; }
   .hero-visual { min-height: 405px; }
+  .hero-scene-wrap { opacity: .62; }
   .tech-badge { top: 23px; right: 10px; padding: 8px 9px; }
   .about { grid-template-columns: 1fr; gap: 33px; }
   .about-visual { width: min(82%, 350px); }

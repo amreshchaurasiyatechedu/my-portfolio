@@ -15,5 +15,21 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react(), tailwindcss()],
     base: "/",
+    build: {
+      rolldownOptions: {
+        output: {
+          codeSplitting: {
+            groups: [
+              {
+                name: "three-vendor",
+                test: /node_modules[\\/]three[\\/]/,
+                maxSize: 420 * 1024,
+                priority: 10,
+              },
+            ],
+          },
+        },
+      },
+    },
   };
 });
