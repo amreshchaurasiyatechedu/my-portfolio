@@ -731,3 +731,57 @@ body {
   .tech-badge, .role-caret { animation: none; }
   .project-card, .project-media img, .contact-pathway { transition: none; }
 }
+
+.portfolio-app { position: relative; isolation: isolate; }
+.portfolio-app > main, .portfolio-app > .site-footer, .portfolio-app > .topline { position: relative; z-index: 1; }
+.portfolio-app > .skip-link { position: fixed; z-index: 1000; }
+.ambient-background { position: fixed; z-index: 0; inset: 0; overflow: hidden; background: #070b14; pointer-events: none; contain: paint; }
+.ambient-mesh { position: absolute; inset: -18%; background: radial-gradient(ellipse at 28% 22%, rgba(35, 91, 196, .2), transparent 37%), radial-gradient(ellipse at 77% 31%, rgba(32, 148, 185, .13), transparent 32%), radial-gradient(ellipse at 56% 78%, rgba(67, 74, 185, .13), transparent 39%); filter: blur(28px); animation: ambient-mesh-drift 42s ease-in-out infinite alternate; will-change: transform; }
+.ambient-pointer-light { position: absolute; top: calc(34% + var(--ambient-pointer-y, 0px)); left: calc(50% + var(--ambient-pointer-x, 0px)); width: min(78vw, 880px); aspect-ratio: 1.35; border-radius: 50%; background: radial-gradient(ellipse, rgba(52, 127, 218, .1), rgba(38, 121, 164, .035) 42%, transparent 72%); filter: blur(42px); transform: translate(-50%, -50%); transition: top .65s ease-out, left .65s ease-out; }
+.ambient-orb { position: absolute; width: clamp(240px, 35vw, 560px); aspect-ratio: 1; border-radius: 50%; filter: blur(100px); opacity: .14; will-change: transform; }
+.ambient-orb-blue { top: 4%; left: -12%; background: #235bce; animation: orb-drift-one 38s ease-in-out infinite alternate; }
+.ambient-orb-cyan { top: 34%; right: -15%; width: clamp(220px, 29vw, 460px); background: #159bb8; opacity: .11; animation: orb-drift-two 46s ease-in-out infinite alternate; }
+.ambient-orb-violet { bottom: -34%; left: 36%; width: clamp(300px, 42vw, 660px); background: #3933a2; opacity: .12; animation: orb-drift-three 53s ease-in-out infinite alternate; }
+.ambient-network { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .12; animation: network-drift 58s ease-in-out infinite alternate; }
+.ambient-network-lines { fill: none; stroke: #70b7ff; stroke-width: .8; }
+.ambient-network-nodes { fill: #8ceaff; }
+.ambient-network-nodes circle { animation: node-pulse 4.8s ease-in-out infinite alternate; }
+.ambient-network-nodes circle:nth-child(3n) { animation-delay: -1.6s; }
+.ambient-network-nodes circle:nth-child(4n) { animation-delay: -3.1s; }
+.ambient-grid { position: absolute; inset: 0; opacity: .11; background-image: linear-gradient(rgba(138, 171, 224, .1) 1px, transparent 1px), linear-gradient(90deg, rgba(138, 171, 224, .1) 1px, transparent 1px); background-size: 88px 88px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent); }
+.scroll-progress { position: fixed; z-index: 300; top: 0; right: 0; left: 0; height: 2px; overflow: hidden; pointer-events: none; }
+.scroll-progress span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #6e8eff, #67e2f6 75%, #a1f2ff); box-shadow: 0 0 12px rgba(103, 226, 246, .45); transform: scaleX(0); transform-origin: left center; }
+.hero { background: radial-gradient(ellipse at 76% 45%, rgba(34, 78, 162, .13), transparent 29rem); }
+.hero-visual { --parallax-x: 0px; --parallax-y: 0px; --parallax-x-slow: 0px; --parallax-y-slow: 0px; }
+.hero h1 > .hero-heading-line { display: block; overflow: hidden; padding-bottom: .07em; color: #f0f5ff; background: none; -webkit-text-fill-color: currentColor; }
+.hero h1 > .hero-heading-line > .hero-heading-word { display: block; color: inherit; background: none; -webkit-text-fill-color: currentColor; }
+.hero h1 > .hero-heading-line > .hero-heading-accent { color: #92a9d1; background: linear-gradient(100deg, #dce8ff, #85a8ff 64%, #74e6f4); background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-visual .portrait-frame { translate: var(--parallax-x-slow) var(--parallax-y-slow); transition: translate .4s ease-out; }
+.hero-visual .visual-orbit { translate: var(--parallax-x) var(--parallax-y); transition: translate .5s ease-out; }
+.hero-tech-icon { position: absolute; z-index: 3; display: flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid rgba(139, 173, 235, .2); color: #c6d6f1; background: rgba(9, 19, 38, .72); box-shadow: 0 10px 24px rgba(0, 0, 0, .2); font-size: 8px; font-weight: 700; letter-spacing: .1em; backdrop-filter: blur(12px); animation: tech-float 5.5s ease-in-out infinite; }
+.hero-tech-icon svg { color: var(--cyan); }
+.hero-tech-code { top: 38%; left: 5%; animation-delay: -.6s; }
+.hero-tech-ai { top: 57%; right: 8%; animation-delay: -2.1s; }
+.hero-tech-ui { bottom: 17%; left: 10%; animation-delay: -3.4s; }
+.section-heading h2 .heading-mask-line { display: inline-block; overflow: hidden; color: #edf4ff; background: none; -webkit-text-fill-color: currentColor; }
+.section-heading h2 .heading-mask-accent { color: #92a9d1; background: linear-gradient(100deg, #aab8d2, #75a3ff 74%, #73e5f4); background-clip: text; -webkit-text-fill-color: transparent; }
+@keyframes ambient-mesh-drift { 0% { transform: translate3d(-1.5%, -1%, 0) scale(1); } 100% { transform: translate3d(1.5%, 1%, 0) scale(1.04); } }
+@keyframes orb-drift-one { 0% { transform: translate3d(-4vw, -2vh, 0) scale(.92); } 100% { transform: translate3d(8vw, 8vh, 0) scale(1.08); } }
+@keyframes orb-drift-two { 0% { transform: translate3d(4vw, -6vh, 0) scale(1.04); } 100% { transform: translate3d(-7vw, 8vh, 0) scale(.94); } }
+@keyframes orb-drift-three { 0% { transform: translate3d(-5vw, 2vh, 0) scale(.94); } 100% { transform: translate3d(6vw, -7vh, 0) scale(1.06); } }
+@keyframes network-drift { 0% { transform: translate3d(-1%, 0, 0) scale(1.02); opacity: .08; } 100% { transform: translate3d(1%, -1%, 0) scale(1.05); opacity: .15; } }
+@keyframes node-pulse { 0% { opacity: .35; } 100% { opacity: .95; } }
+@media (max-width: 680px) {
+  .ambient-orb { opacity: .1; filter: blur(78px); }
+  .ambient-network { opacity: .08; }
+  .ambient-grid { background-size: 64px 64px; opacity: .07; }
+  .hero-tech-icon { gap: 5px; padding: 7px 8px; font-size: 7px; }
+  .hero-tech-code { top: 38%; left: 2%; }
+  .hero-tech-ai { right: 2%; }
+  .hero-tech-ui { bottom: 13%; left: 4%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-mesh, .ambient-orb, .ambient-network, .ambient-network-nodes circle, .hero-tech-icon { animation: none; }
+  .ambient-pointer-light { display: none; }
+  .hero-visual .portrait-frame, .hero-visual .visual-orbit { transition: none; }
+}

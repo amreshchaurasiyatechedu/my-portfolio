@@ -3,6 +3,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowUpRight,
+  BrainCircuit,
+  Code2,
   Film,
   Palette,
   PanelsTopLeft,
@@ -32,8 +34,34 @@ export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [sceneVisible, setSceneVisible] = useState(false);
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef(null);
   const visualRef = useRef(null);
   const scenePointerRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (reduceMotion || !heroRef.current) return undefined;
+
+    let animationFrame = 0;
+    let introTimeline;
+    const context = gsap.context(() => {
+      const select = gsap.utils.selector(heroRef);
+      introTimeline = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      introTimeline
+        .fromTo(select(".hero-copy .eyebrow"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.55, clearProps: "transform,opacity,visibility" })
+        .fromTo(select(".hero-heading-word"), { autoAlpha: 0, yPercent: 112 }, { autoAlpha: 1, yPercent: 0, duration: 0.82, stagger: 0.12, clearProps: "transform,opacity,visibility" }, "-=0.15")
+        .fromTo(select(".hero-subtitle, .role-line, .hero-intro"), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.48, stagger: 0.08, clearProps: "transform,opacity,visibility" }, "-=0.34")
+        .fromTo(select(".hero-actions .button"), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.42, stagger: 0.07, clearProps: "transform,opacity,visibility" }, "-=0.2")
+        .fromTo(select(".hero-footnote"), { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.4, clearProps: "transform,opacity,visibility" }, "-=0.1")
+        .fromTo(select(".portrait-frame"), { autoAlpha: 0, scale: 1.04, clipPath: "inset(10% 0 0 0 round 2px)" }, { autoAlpha: 1, scale: 1, clipPath: "inset(0% 0 0 0 round 2px)", duration: 0.95, clearProps: "transform,clipPath,opacity,visibility" }, 0.15)
+        .fromTo(select(".hero-tech-icon"), { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1, clearProps: "transform,opacity,visibility" }, "-=0.55");
+    }, heroRef);
+
+    animationFrame = window.requestAnimationFrame(() => introTimeline?.play());
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      context.revert();
+    };
+  }, [reduceMotion]);
 
   useEffect(() => {
     if (reduceMotion || !visualRef.current) {
@@ -72,24 +100,38 @@ export function HeroSection() {
   }, [reduceMotion]);
 
   const handleVisualPointerMove = (event) => {
+    if (reduceMotion) return;
     const bounds = visualRef.current?.getBoundingClientRect();
     if (!bounds) return;
 
-    scenePointerRef.current.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
-    scenePointerRef.current.y = 1 - ((event.clientY - bounds.top) / bounds.height) * 2;
+    const x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
+    const y = 1 - ((event.clientY - bounds.top) / bounds.height) * 2;
+    scenePointerRef.current.x = x;
+    scenePointerRef.current.y = y;
+    visualRef.current?.style.setProperty("--parallax-x", `${x * -10}px`);
+    visualRef.current?.style.setProperty("--parallax-y", `${y * -10}px`);
+    visualRef.current?.style.setProperty("--parallax-x-slow", `${x * -5}px`);
+    visualRef.current?.style.setProperty("--parallax-y-slow", `${y * -5}px`);
   };
 
   const resetVisualPointer = () => {
     scenePointerRef.current.x = 0;
     scenePointerRef.current.y = 0;
+    visualRef.current?.style.setProperty("--parallax-x", "0px");
+    visualRef.current?.style.setProperty("--parallax-y", "0px");
+    visualRef.current?.style.setProperty("--parallax-x-slow", "0px");
+    visualRef.current?.style.setProperty("--parallax-y-slow", "0px");
   };
 
   return (
     <>
-      <section className="hero section-wrap" id="home" aria-labelledby="hero-title">
+      <section className="hero section-wrap" id="home" aria-labelledby="hero-title" ref={heroRef}>
         <Reveal className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> B.Sc. IT student · Ambernath, India</p>
-          <h1 id="hero-title">Hi, I&apos;m Amresh<br /><span>Chaurasiya.</span></h1>
+          <h1 id="hero-title">
+            <span className="hero-heading-line"><span className="hero-heading-word">Hi, I&apos;m Amresh</span></span>
+            <span className="hero-heading-line"><span className="hero-heading-word hero-heading-accent">Chaurasiya.</span></span>
+          </h1>
           <h2 className="hero-subtitle">Developer. Creator. Founder.</h2>
           <p className="role-line" aria-label="Professional focus: aspiring full stack developer, AI development enthusiast, software developer, and founder of Click Craft Studio.">
             <span className="role-prefix" aria-hidden="true">Currently</span>
@@ -140,6 +182,9 @@ export function HeroSection() {
           <div className="visual-orbit orbit-one" />
           <div className="visual-orbit orbit-two" />
           <div className="tech-badge" aria-hidden="true"><span>&lt;/&gt;</span><b>AI / CODE</b></div>
+          <div className="hero-tech-icon hero-tech-code" aria-hidden="true"><Code2 size={14} /><span>JS</span></div>
+          <div className="hero-tech-icon hero-tech-ai" aria-hidden="true"><BrainCircuit size={14} /><span>AI</span></div>
+          <div className="hero-tech-icon hero-tech-ui" aria-hidden="true"><PanelsTopLeft size={14} /><span>UI</span></div>
           <div className="portrait-frame">
             <img src="/assets/amresh-at-work.jpg" alt="Amresh working at a computer" fetchPriority="high" decoding="async" />
             <div className="portrait-shade" />
@@ -169,7 +214,7 @@ export function AboutSection() {
     <section className="about section-wrap section-space" id="about">
       <Reveal className="about-visual">
         <div className="about-photo-glow" />
-        <div className="about-photo-frame">
+        <div className="about-photo-frame" data-reveal-image>
           <img src="/assets/amresh-profile.png" alt="Portrait of Amresh Chaurasiya" loading="lazy" decoding="async" />
           <div className="about-photo-caption"><span>AMRESH CHAURASIYA</span><b>Technology, with a<br />creative point of view.</b></div>
         </div>
@@ -241,9 +286,9 @@ export function SkillsSection() {
   );
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, delay = 0 }) {
   return (
-    <Reveal as="article" className="project-card">
+    <Reveal as="article" className="project-card" delay={delay}>
       <div className="project-media">
         <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
         <span className={`project-status ${project.statusClass}`}>{project.status}</span>
@@ -284,7 +329,7 @@ export function ProjectsSection() {
           <Reveal className="project-group-heading">
             <div><p className="eyebrow">{group.eyebrow}</p><h3>{group.title}</h3></div><span>{group.range}</span>
           </Reveal>
-          <div className="project-grid">{group.projects.map((project) => <ProjectCard key={project.title} project={project} />)}</div>
+          <div className="project-grid">{group.projects.map((project, index) => <ProjectCard key={project.title} project={project} delay={index * 0.08} />)}</div>
         </div>
       ))}
       <Reveal as="p" className="project-note">
@@ -327,10 +372,10 @@ export function StudioSection() {
         <Reveal className="studio-quote">“Turning Creative Ideas<br />Into Digital Experiences.”<span>— THE STUDIO PROMISE</span></Reveal>
         <Reveal className="service-heading"><div><p className="eyebrow">Creative services</p><h3>Ideas, shaped for the feed.</h3></div><p>Creative support for brands, creators and businesses looking to show up with intention.</p></Reveal>
         <div className="service-grid">
-          {studioServices.map(({ number, icon, title, description }) => {
+          {studioServices.map(({ number, icon, title, description }, index) => {
             const Icon = serviceIcons[icon];
             return (
-              <Reveal as="article" className="service-card" key={title}>
+              <Reveal as="article" className="service-card" key={title} delay={index * 0.07}>
                 <span>{number} <i><ArrowUpRight size={13} aria-hidden="true" /></i></span>
                 <div className="service-icon"><Icon size={23} strokeWidth={1.6} aria-hidden="true" /></div>
                 <h4>{title}</h4><p>{description}</p>
