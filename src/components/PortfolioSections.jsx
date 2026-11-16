@@ -121,7 +121,7 @@ export function AboutSection() {
       <Reveal className="about-visual">
         <div className="about-photo-glow" />
         <div className="about-photo-frame">
-          <img src="/assets/amresh-profile.jpg" alt="Portrait of Amresh Chaurasiya" loading="lazy" />
+          <img src="/assets/amresh-profile.png" alt="Portrait of Amresh Chaurasiya" loading="lazy" decoding="async" />
           <div className="about-photo-caption"><span>AMRESH CHAURASIYA</span><b>Technology, with a<br />creative point of view.</b></div>
         </div>
         <span className="about-photo-index">PROFILE / 01</span>
@@ -130,22 +130,27 @@ export function AboutSection() {
       <Reveal className="about-content">
         <p className="eyebrow">01 / About me</p>
         <h2 className="about-title">Two sides.<br /><span>One point of view.</span></h2>
-        <p className="about-lede">A technologist in the making, with an entrepreneur&apos;s instinct to create.</p>
+        <p className="about-lede">B.Sc. IT student. Aspiring Full Stack Developer. AI enthusiast. Founder of Click Craft Studio.</p>
         <p className="body-copy">
-          I&apos;m a B.Sc. Information Technology student at Vedanta College, affiliated with the
-          University of Mumbai. My studies are shaping a practical foundation in software
-          development, while personal projects help me learn by building.
+          I&apos;m pursuing a B.Sc. in Information Technology at Vedanta College, affiliated with the
+          University of Mumbai. Coursework and personal projects are helping me build a strong
+          foundation as I work toward becoming a Full Stack Developer.
         </p>
         <p className="body-copy">
-          I&apos;m especially curious about artificial intelligence and emerging technologies—and how
-          they can make useful, thoughtful digital experiences possible. My creative interests in
-          video editing and digital content led me to found Click Craft Studio, where I&apos;m bringing
-          ideas to life and learning the craft of building a business along the way.
+          I&apos;m an AI enthusiast interested in how emerging technologies can support useful digital
+          experiences. I also founded Click Craft Studio, a creative services studio focused on
+          video editing and social media management. I continue to grow the studio while developing
+          my technical and creative skills.
         </p>
         <div className="about-facts">
           <div><span>01</span><b>Education</b><small>B.Sc. Information Technology</small></div>
           <div><span>02</span><b>Technology</b><small>Software, AI &amp; emerging tech</small></div>
           <div><span>03</span><b>Entrepreneurship</b><small>Founder, Click Craft Studio</small></div>
+        </div>
+        <div className="about-actions">
+          <a className="button button-quiet" href="/assets/Amresh-Chaurasiya-Resume.pdf" download="Amresh-Chaurasiya-Resume.pdf">
+            Download Resume <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </Reveal>
     </section>

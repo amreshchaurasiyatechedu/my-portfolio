@@ -671,10 +671,10 @@ body {
 
 .about { grid-template-columns: .85fr 1.15fr; align-items: center; gap: 8%; }
 .about-visual { position: relative; width: min(100%, 390px); margin-inline: auto; }
-.about-photo-glow { position: absolute; inset: 9% -8% -7% 9%; border: 1px solid rgba(105, 154, 255, .25); background: radial-gradient(ellipse at 70% 22%, rgba(52, 107, 235, .24), transparent 62%); filter: blur(5px); }
-.about-photo-frame { position: relative; z-index: 1; aspect-ratio: .86; overflow: hidden; border: 1px solid rgba(148, 173, 214, .2); background: #101a2b; box-shadow: 0 28px 65px rgba(0, 0, 0, .4); }
+.about-photo-glow { position: absolute; inset: 9% -8% -7% 9%; border: 1px solid rgba(105, 154, 255, .25); border-radius: 14px; background: radial-gradient(ellipse at 70% 22%, rgba(52, 107, 235, .24), transparent 62%), radial-gradient(ellipse at 22% 82%, rgba(103, 226, 246, .13), transparent 58%); filter: blur(5px); }
+.about-photo-frame { position: relative; z-index: 1; aspect-ratio: .86; overflow: hidden; border: 1px solid rgba(148, 173, 214, .28); border-radius: 12px; background: #101a2b; box-shadow: 0 28px 65px rgba(0, 0, 0, .4), 0 0 32px rgba(73, 150, 239, .1); }
 .about-photo-frame::after { position: absolute; inset: 38% 0 0; background: linear-gradient(transparent, rgba(5, 10, 20, .92)); content: ""; }
-.about-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 23%; filter: saturate(.72) brightness(.84); }
+.about-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: saturate(.92) brightness(.95); }
 .about-photo-caption { position: absolute; z-index: 2; right: 21px; bottom: 20px; left: 21px; display: flex; flex-direction: column; gap: 8px; color: #f3f7ff; }
 .about-photo-caption span { color: #91dcec; font-size: 8px; font-weight: 700; letter-spacing: .15em; }
 .about-photo-caption b { font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: -.035em; line-height: 1.3; }
@@ -688,6 +688,7 @@ body {
 .about-content .body-copy { margin-top: 15px; font-size: 12px; }
 .about-facts { margin-top: 24px; padding-top: 18px; }
 .about-facts b { color: #e6efff; }
+.about-actions { display: flex; margin-top: 22px; }
 
 @media (max-width: 900px) {
   .hero { min-height: 680px; }
