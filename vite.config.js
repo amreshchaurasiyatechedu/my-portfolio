@@ -26,6 +26,11 @@ export default defineConfig(({ mode }) => {
                 maxSize: 420 * 1024,
                 priority: 10,
               },
+              {
+                name: "motion-vendor",
+                test: /node_modules[\\/](framer-motion|motion-dom|motion-utils)[\\/]/,
+                priority: 8,
+              },
             ],
           },
         },

@@ -30,6 +30,28 @@ import SectionHeading from "./SectionHeading.jsx";
 const serviceIcons = { Film, Instagram: FaInstagram, Youtube: FaYoutube, PanelsTopLeft, Sparkles, Palette };
 const HeroScene = lazy(() => import("./HeroScene.jsx"));
 
+function updateTilt(event, maxAngle = 8) {
+  if (event.pointerType !== "mouse") return;
+
+  const element = event.currentTarget;
+  const bounds = element.getBoundingClientRect();
+  const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
+  const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height));
+
+  element.style.setProperty("--card-tilt-x", `${(0.5 - y) * maxAngle}deg`);
+  element.style.setProperty("--card-tilt-y", `${(x - 0.5) * maxAngle}deg`);
+  element.style.setProperty("--card-light-x", `${x * 100}%`);
+  element.style.setProperty("--card-light-y", `${y * 100}%`);
+}
+
+function resetTilt(event) {
+  const element = event.currentTarget;
+  element.style.setProperty("--card-tilt-x", "0deg");
+  element.style.setProperty("--card-tilt-y", "0deg");
+  element.style.setProperty("--card-light-x", "50%");
+  element.style.setProperty("--card-light-y", "50%");
+}
+
 export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [sceneVisible, setSceneVisible] = useState(false);
@@ -287,8 +309,18 @@ export function SkillsSection() {
 }
 
 function ProjectCard({ project, delay = 0 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <Reveal as="article" className="project-card" delay={delay}>
+    <Reveal
+      as="article"
+      className="project-card"
+      delay={delay}
+      onPointerMove={(event) => {
+        if (!reduceMotion) updateTilt(event, 8);
+      }}
+      onPointerLeave={resetTilt}
+    >
       <div className="project-media">
         <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
         <span className={`project-status ${project.statusClass}`}>{project.status}</span>
@@ -355,7 +387,25 @@ function ConceptArtwork({ type }) {
   );
 }
 
+function StudioConceptCard({ concept, reduceMotion }) {
+  return (
+    <article
+      className={`concept-card concept-${concept.type}`}
+      onPointerMove={(event) => {
+        if (!reduceMotion) updateTilt(event, 5);
+      }}
+      onPointerLeave={resetTilt}
+    >
+      <span className="concept-stamp">ILLUSTRATIVE CONCEPT</span>
+      <ConceptArtwork type={concept.type} />
+      <div className="concept-caption"><b>{concept.title}</b><span>{concept.subtitle}</span></div>
+    </article>
+  );
+}
+
 export function StudioSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="studio" id="click-craft">
       <div className="studio-glow" />
@@ -364,7 +414,22 @@ export function StudioSection() {
         <Reveal className="studio-heading">
           <div><p className="studio-overline">Founder identity</p><h2>Click Craft<br /><span>Studio.</span></h2></div>
           <div className="studio-intro">
-            <img src="/assets/click-craft-studio-brand.webp" alt="Click Craft Studio logo and Crafting Content That Clicks tagline" loading="lazy" />
+            <div className="studio-brand-stage">
+              <div className="studio-brand-orbit studio-brand-orbit-one" aria-hidden="true" />
+              <div className="studio-brand-orbit studio-brand-orbit-two" aria-hidden="true" />
+              <div className="studio-creative-object studio-object-film" aria-hidden="true"><Film size={19} /><span>EDIT</span></div>
+              <div className="studio-creative-object studio-object-design" aria-hidden="true"><Palette size={18} /><span>DESIGN</span></div>
+              <div className="studio-creative-object studio-object-motion" aria-hidden="true"><Sparkles size={17} /><span>MOTION</span></div>
+              <div className="studio-logo-frame">
+                <img src="/assets/click-craft-studio-brand.webp" alt="Click Craft Studio logo and Crafting Content That Clicks tagline" loading="lazy" />
+                <span className="studio-logo-shine" aria-hidden="true" />
+              </div>
+              <div className="studio-edit-timeline" aria-hidden="true">
+                <div className="studio-timeline-heading"><span>EDITING TIMELINE</span><span>MOTION STUDY · CONCEPT</span></div>
+                <div className="studio-track-row"><span>V1</span><div className="studio-track studio-track-video"><i /><i /><i /></div></div>
+                <div className="studio-track-row"><span>A1</span><div className="studio-track studio-track-audio"><i /><i /><i /><i /></div></div>
+              </div>
+            </div>
             <p>I founded Click Craft Studio to turn creative ideas into digital experiences — helping brands, creators and businesses build a stronger online presence through engaging content and thoughtful creative services.</p>
             <p className="founder-line"><b>Amresh Chaurasiya</b><span>Founder — Click Craft Studio</span></p>
           </div>
@@ -390,11 +455,7 @@ export function StudioSection() {
           </div>
           <div className="concept-grid">
             {studioConcepts.map((concept) => (
-              <article className={`concept-card concept-${concept.type}`} key={concept.type}>
-                <span className="concept-stamp">ILLUSTRATIVE CONCEPT</span>
-                <ConceptArtwork type={concept.type} />
-                <div className="concept-caption"><b>{concept.title}</b><span>{concept.subtitle}</span></div>
-              </article>
+              <StudioConceptCard key={concept.type} concept={concept} reduceMotion={reduceMotion} />
             ))}
           </div>
         </Reveal>
