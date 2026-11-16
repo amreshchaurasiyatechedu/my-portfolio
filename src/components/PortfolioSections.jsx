@@ -10,7 +10,21 @@ import {
   PanelsTopLeft,
   Sparkles,
 } from "lucide-react";
-import { FaInstagram, FaYoutube } from "react-icons/fa6";
+import {
+  FaCode,
+  FaCss3Alt,
+  FaDatabase,
+  FaGitAlt,
+  FaGithub,
+  FaHtml5,
+  FaInstagram,
+  FaJava,
+  FaJs,
+  FaNodeJs,
+  FaPython,
+  FaReact,
+  FaYoutube,
+} from "react-icons/fa6";
 import gsap from "gsap";
 import {
   achievementGroups,
@@ -28,6 +42,31 @@ import Reveal from "./Reveal.jsx";
 import SectionHeading from "./SectionHeading.jsx";
 
 const serviceIcons = { Film, Instagram: FaInstagram, Youtube: FaYoutube, PanelsTopLeft, Sparkles, Palette };
+const skillIcons = {
+  Java: FaJava,
+  Python: FaPython,
+  JavaScript: FaJs,
+  HTML: FaHtml5,
+  CSS: FaCss3Alt,
+  React: FaReact,
+  "Node.js": FaNodeJs,
+  "Express.js": FaCode,
+  MySQL: FaDatabase,
+  MongoDB: FaDatabase,
+  Git: FaGitAlt,
+  GitHub: FaGithub,
+  "VS Code": Code2,
+  "Gemini API": Sparkles,
+  "AI Application Development": BrainCircuit,
+  "RAG Concepts": PanelsTopLeft,
+};
+const categoryIcons = {
+  Programming: FaCode,
+  Frontend: FaReact,
+  Backend: FaNodeJs,
+  Databases: FaDatabase,
+  Tools: FaGitAlt,
+};
 const HeroScene = lazy(() => import("./HeroScene.jsx"));
 
 function updateTilt(event, maxAngle = 8) {
@@ -232,10 +271,22 @@ export function HeroSection() {
 }
 
 export function AboutSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="about section-wrap section-space" id="about">
-      <Reveal className="about-visual">
-        <div className="about-photo-glow" />
+      <Reveal
+        className="about-visual"
+        onPointerMove={(event) => {
+          if (!reduceMotion) updateTilt(event, 3);
+        }}
+        onPointerLeave={resetTilt}
+      >
+        <div className="about-photo-decoration" aria-hidden="true">
+          <div className="about-photo-glow" />
+          <span className="about-photo-orbit about-photo-orbit-one" />
+          <span className="about-photo-orbit about-photo-orbit-two" />
+        </div>
         <div className="about-photo-frame" data-reveal-image>
           <img src="/assets/amresh-profile.png" alt="Portrait of Amresh Chaurasiya" loading="lazy" decoding="async" />
           <div className="about-photo-caption"><span>AMRESH CHAURASIYA</span><b>Technology, with a<br />creative point of view.</b></div>
@@ -275,6 +326,7 @@ export function AboutSection() {
 
 export function SkillsSection() {
   const [working, learning] = skillPanels;
+  const reduceMotion = useReducedMotion();
 
   return (
     <section className="skills-section section-wrap section-space" id="skills">
@@ -286,21 +338,44 @@ export function SkillsSection() {
         description="A growing toolkit shaped by my IT studies and project work. I separate technologies I have used from the AI topics I am currently exploring."
       />
       <div className="skills-panels">
-        <Reveal as="article" className="skills-panel">
-          <div className="skills-panel-heading"><div><p className="eyebrow">{working.label}</p><h3>{working.title}</h3></div><span className="skills-panel-index">01</span></div>
+        <Reveal
+          as="article"
+          className="skills-panel"
+          onPointerMove={(event) => {
+            if (!reduceMotion) updateTilt(event, 2.5);
+          }}
+          onPointerLeave={resetTilt}
+        >
+          <div className="skills-panel-heading"><div><p className="eyebrow">{working.label}</p><h3>{working.title}</h3></div><span className="skills-panel-index"><Code2 size={17} aria-hidden="true" /><b>01</b></span></div>
           <div className="skills-category-grid">
-            {working.categories.map(({ title, skills, wide }) => (
-              <section className={`skill-category${wide ? " skill-category-wide" : ""}`} key={title}>
-                <h4>{title}</h4>
-                <div className="skill-tags">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
-              </section>
-            ))}
+            {working.categories.map(({ title, skills, wide }) => {
+              const Icon = categoryIcons[title] || FaCode;
+              return (
+                <section className={`skill-category${wide ? " skill-category-wide" : ""}`} key={title}>
+                  <h4><Icon size={13} aria-hidden="true" />{title}</h4>
+                  <div className="skill-tags">{skills.map((skill) => {
+                    const SkillIcon = skillIcons[skill] || FaCode;
+                    return <span className="skill-tag" key={skill}><SkillIcon size={12} aria-hidden="true" />{skill}</span>;
+                  })}</div>
+                </section>
+              );
+            })}
           </div>
         </Reveal>
-        <Reveal as="article" className="skills-panel skills-panel-learning">
-          <div className="skills-panel-heading"><div><p className="eyebrow">{learning.label}</p><h3>{learning.title}</h3></div><span className="skills-panel-index">02</span></div>
+        <Reveal
+          as="article"
+          className="skills-panel skills-panel-learning"
+          onPointerMove={(event) => {
+            if (!reduceMotion) updateTilt(event, 2.5);
+          }}
+          onPointerLeave={resetTilt}
+        >
+          <div className="skills-panel-heading"><div><p className="eyebrow">{learning.label}</p><h3>{learning.title}</h3></div><span className="skills-panel-index"><BrainCircuit size={17} aria-hidden="true" /><b>02</b></span></div>
           <p className="skills-learning-copy">{learning.description}</p>
-          <div className="skill-tags skill-tags-learning">{learning.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+          <div className="skill-tags skill-tags-learning">{learning.skills.map((skill) => {
+            const Icon = skillIcons[skill] || FaCode;
+            return <span className="skill-tag" key={skill}><Icon size={12} aria-hidden="true" />{skill}</span>;
+          })}</div>
           <div className="skills-learning-note"><span className="blue-dot" /><p>{learning.note}</p></div>
         </Reveal>
       </div>
@@ -475,9 +550,11 @@ export function ExperienceSection() {
   return (
     <section className="journey section-wrap section-space" id="experience">
       <SectionHeading number="05" eyebrow="Experience" title="Building as" highlight="I learn." description="A creative media role at Deva Media alongside my independent founder role at Click Craft Studio." />
-      <div className="timeline experience-timeline">
+      <Reveal as="div" className="timeline experience-timeline">
+        <span className="timeline-track" data-reveal-line aria-hidden="true" />
         {experience.map((item) => (
           <Reveal as="article" className="timeline-item experience-timeline-item" key={item.title}>
+            <span className="timeline-node" data-reveal-node aria-hidden="true" />
             <div className="experience-time"><span className="timeline-year">{item.year}</span><span className="experience-duration">{item.duration}</span></div>
             <div className="experience-content">
               <p className="experience-label">{item.label}</p><h3>{item.title}</h3>
@@ -489,17 +566,19 @@ export function ExperienceSection() {
             <span className="timeline-mark" aria-hidden="true">{item.company ? "✳" : "↗"}</span>
           </Reveal>
         ))}
-      </div>
+      </Reveal>
       <Reveal className="journey-heading"><p className="eyebrow">The founder journey</p><h3>Small steps, real progress.</h3></Reveal>
-      <div className="timeline">
+      <Reveal as="div" className="timeline founder-timeline">
+        <span className="timeline-track" data-reveal-line aria-hidden="true" />
         {founderJourney.map((item, index) => (
           <Reveal as="article" className="timeline-item" key={item.number}>
+            <span className="timeline-node" data-reveal-node aria-hidden="true" />
             <span className="timeline-year">{item.number}</span>
             <div><h3>{item.title}</h3><p>{item.description}</p></div>
             <span className="timeline-mark" aria-hidden="true">{index === founderJourney.length - 1 ? "↗" : "✳"}</span>
           </Reveal>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -527,12 +606,22 @@ export function EducationSection() {
 }
 
 export function CertificationsSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="certifications section-wrap section-space" id="certifications">
       <SectionHeading number="07" eyebrow="Certifications" title="Credentials," highlight="earned & verified." description="Deloitte (Forage), TCS and Hunarho credentials shared for display. Certificate images and public verification links were not available in the workspace." />
       <div className="certification-grid">
         {certifications.map(({ provider, kind, monogram, title, tags }) => (
-          <Reveal as="article" className="certification-card" key={provider}>
+          <Reveal
+            as="article"
+            className="certification-card"
+            key={provider}
+            onPointerMove={(event) => {
+              if (!reduceMotion) updateTilt(event, 3.5);
+            }}
+            onPointerLeave={resetTilt}
+          >
             <div className="certification-card-top"><span className="credential-provider">{provider}</span><span className="credential-kind">{kind}</span></div>
             <span className="credential-monogram" aria-hidden="true">{monogram}</span>
             <h3>{title}</h3>

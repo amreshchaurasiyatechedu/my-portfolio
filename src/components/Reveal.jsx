@@ -34,6 +34,39 @@ export default function Reveal({ as = "div", className = "", children, delay = 0
           },
         );
 
+        const track = element.querySelector("[data-reveal-line]");
+        if (track) {
+          timeline.fromTo(
+            track,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              duration: 1,
+              ease: "power2.out",
+              transformOrigin: "top center",
+              onComplete: () => gsap.set(track, { clearProps: "transform" }),
+            },
+            0.1,
+          );
+        }
+
+        const nodes = element.querySelectorAll("[data-reveal-node]");
+        if (nodes.length) {
+          timeline.fromTo(
+            nodes,
+            { autoAlpha: 0, scale: 0.65 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.42,
+              stagger: 0.16,
+              ease: "back.out(1.7)",
+              onComplete: () => gsap.set(nodes, { clearProps: "transform,opacity,visibility" }),
+            },
+            0.28,
+          );
+        }
+
         const mask = element.querySelector("[data-reveal-mask]");
         if (mask) {
           timeline.fromTo(

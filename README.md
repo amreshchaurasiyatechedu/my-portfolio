@@ -1,6 +1,6 @@
 # Amresh Chaurasiya — Portfolio
 
-Responsive React portfolio built with Vite, Tailwind CSS, Three.js with React Three Fiber and Drei, Framer Motion, GSAP ScrollTrigger, Lucide React and React Icons. The lazy-loaded 3D hero pauses when off-screen; ambient lighting, hero motion, scroll reveals and the progress indicator respect reduced-motion preferences. Project cards use mouse tilt with touch-friendly feedback, and the Click Craft founder section uses the supplied logo with clearly labeled concept artwork and a decorative editing timeline.
+Responsive React portfolio built with Vite, Tailwind CSS, Three.js with React Three Fiber and Drei, Framer Motion, GSAP ScrollTrigger, Lucide React and React Icons. The lazy-loaded 3D hero pauses when off-screen; ambient lighting, hero motion, scroll reveals and the progress indicator respect reduced-motion preferences. Project, skill and certification cards use subtle pointer interactions; a desktop-only custom cursor and magnetic CTAs are disabled for touch and reduced-motion preferences. The About portrait and founder timelines use restrained motion, and the Click Craft founder section uses the supplied logo with clearly labeled concept artwork and a decorative editing timeline.
 
 ## Development
 
