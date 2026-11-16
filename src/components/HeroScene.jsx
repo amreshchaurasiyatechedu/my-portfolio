@@ -9,12 +9,12 @@ function AdaptivePerformance() {
   return <PerformanceMonitor factor={1} onDecline={regress} onFallback={regress} />;
 }
 
-function SceneObjects({ pointerRef, lowPower }) {
+function SceneObjects({ pointerRef, lowPower, staticScene }) {
   const groupRef = useRef(null);
   const coreRef = useRef(null);
 
   useFrame(({ camera, clock }, delta) => {
-    if (lowPower) return;
+    if (staticScene) return;
 
     const pointer = pointerRef.current;
     const group = groupRef.current;
@@ -39,7 +39,7 @@ function SceneObjects({ pointerRef, lowPower }) {
     }
   });
 
-  if (lowPower) {
+  if (staticScene) {
     return (
       <>
         <ambientLight intensity={0.75} />
@@ -65,46 +65,59 @@ function SceneObjects({ pointerRef, lowPower }) {
       <pointLight color="#397cff" intensity={5} position={[2.8, 2.4, 3]} distance={7} />
       <pointLight color="#43dff5" intensity={3} position={[-2.8, -1.6, 2]} distance={6} />
       <group ref={groupRef}>
-        <Float speed={0.7} rotationIntensity={0.12} floatIntensity={0.17} floatingRange={[-0.1, 0.1]}>
+        <Float
+          speed={lowPower ? 0.48 : 0.7}
+          rotationIntensity={lowPower ? 0.08 : 0.12}
+          floatIntensity={lowPower ? 0.1 : 0.17}
+          floatingRange={lowPower ? [-0.06, 0.06] : [-0.1, 0.1]}
+        >
           <group position={[1.75, 1.72, -0.2]}>
             <mesh ref={coreRef} scale={0.62}>
-              <icosahedronGeometry args={[0.8, 2]} />
-              <MeshDistortMaterial
-                color="#2868df"
-                emissive="#135fc5"
-                emissiveIntensity={0.95}
-                metalness={0.58}
-                roughness={0.22}
-                distort={0.27}
-                speed={0.8}
-              />
+              <icosahedronGeometry args={[0.8, lowPower ? 1 : 2]} />
+              {lowPower ? (
+                <meshStandardMaterial color="#2868df" emissive="#135fc5" emissiveIntensity={0.5} metalness={0.42} roughness={0.3} />
+              ) : (
+                <MeshDistortMaterial
+                  color="#2868df"
+                  emissive="#135fc5"
+                  emissiveIntensity={0.95}
+                  metalness={0.58}
+                  roughness={0.22}
+                  distort={0.27}
+                  speed={0.8}
+                />
+              )}
             </mesh>
             <mesh rotation={[0.62, 0.32, -0.38]}>
-              <torusGeometry args={[0.78, 0.012, 8, 64]} />
+              <torusGeometry args={[0.78, 0.012, 8, lowPower ? 48 : 64]} />
               <meshBasicMaterial color="#8beaff" transparent opacity={0.74} />
             </mesh>
             <mesh rotation={[-0.48, 0.9, 0.54]} scale={[1.16, 0.82, 1]}>
-              <torusGeometry args={[0.78, 0.008, 8, 64]} />
+              <torusGeometry args={[0.78, 0.008, 8, lowPower ? 48 : 64]} />
               <meshBasicMaterial color="#618dff" transparent opacity={0.45} />
             </mesh>
           </group>
         </Float>
 
-        <Float speed={0.85} rotationIntensity={0.55} floatIntensity={0.28} floatingRange={[-0.16, 0.16]}>
-          <mesh position={[-1.98, 1.76, 0.25]} scale={0.18}>
-            <octahedronGeometry args={[1, 0]} />
-            <meshStandardMaterial color="#a8d7ff" metalness={0.72} roughness={0.2} emissive="#1d5fff" emissiveIntensity={0.55} />
-          </mesh>
-        </Float>
+        {!lowPower && (
+          <Float speed={0.85} rotationIntensity={0.55} floatIntensity={0.28} floatingRange={[-0.16, 0.16]}>
+            <mesh position={[-1.98, 1.76, 0.25]} scale={0.18}>
+              <octahedronGeometry args={[1, 0]} />
+              <meshStandardMaterial color="#a8d7ff" metalness={0.72} roughness={0.2} emissive="#1d5fff" emissiveIntensity={0.55} />
+            </mesh>
+          </Float>
+        )}
 
-        <Float speed={0.6} rotationIntensity={0.42} floatIntensity={0.2} floatingRange={[-0.12, 0.12]}>
-          <mesh position={[1.96, -1.68, -0.25]} scale={0.16}>
-            <dodecahedronGeometry args={[1, 0]} />
-            <meshStandardMaterial color="#8deafa" metalness={0.62} roughness={0.24} emissive="#176ea8" emissiveIntensity={0.7} />
-          </mesh>
-        </Float>
+        {!lowPower && (
+          <Float speed={0.6} rotationIntensity={0.42} floatIntensity={0.2} floatingRange={[-0.12, 0.12]}>
+            <mesh position={[1.96, -1.68, -0.25]} scale={0.16}>
+              <dodecahedronGeometry args={[1, 0]} />
+              <meshStandardMaterial color="#8deafa" metalness={0.62} roughness={0.24} emissive="#176ea8" emissiveIntensity={0.7} />
+            </mesh>
+          </Float>
+        )}
       </group>
-      <Sparkles count={32} scale={[4.8, 4.8, 2.8]} size={2.1} speed={0.18} opacity={0.62} color="#6ee5ff" />
+      <Sparkles count={lowPower ? 18 : 32} scale={[4.8, 4.8, 2.8]} size={2.1} speed={lowPower ? 0.12 : 0.18} opacity={0.62} color="#6ee5ff" />
     </>
   );
 }
@@ -125,22 +138,22 @@ class SceneErrorBoundary extends Component {
   }
 }
 
-export default function HeroScene({ pointerRef, lowPower }) {
+export default function HeroScene({ pointerRef, lowPower, staticScene }) {
   return (
     <SceneErrorBoundary>
       <Canvas
         aria-hidden="true"
         camera={{ position: [0, 0, 6], fov: 43 }}
         dpr={lowPower ? [0.75, 1] : [1, 1.25]}
-        frameloop={lowPower ? "demand" : "always"}
+        frameloop={staticScene ? "demand" : "always"}
         fallback={<div className="hero-scene-fallback" />}
         gl={{ alpha: true, antialias: !lowPower, powerPreference: "low-power" }}
         performance={{ min: lowPower ? 0.75 : 0.6, debounce: 3000 }}
         onCreated={({ gl }) => gl.setClearColor("#050a18", 0)}
       >
-        {!lowPower && <AdaptivePerformance />}
+        {!staticScene && <AdaptivePerformance />}
         <AdaptiveDpr pixelated />
-        <SceneObjects pointerRef={pointerRef} lowPower={lowPower} />
+        <SceneObjects pointerRef={pointerRef} lowPower={lowPower} staticScene={staticScene} />
       </Canvas>
     </SceneErrorBoundary>
   );

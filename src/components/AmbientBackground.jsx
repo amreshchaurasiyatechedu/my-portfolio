@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import shouldUseLightweightRendering from "../utils/shouldUseLightweightRendering.js";
+import getRenderingProfile from "../utils/getRenderingProfile.js";
 
 export default function AmbientBackground() {
   const backgroundRef = useRef(null);
@@ -8,24 +8,13 @@ export default function AmbientBackground() {
     const background = backgroundRef.current;
     if (!background) return undefined;
 
-    const lightweight = shouldUseLightweightRendering();
-    background.classList.toggle("is-low-power", lightweight);
-    document.documentElement.classList.toggle("low-power-effects", lightweight);
-
-    if (
-      lightweight
-      || window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      || !window.matchMedia("(pointer: fine)").matches
-    ) {
-      return () => {
-        background.classList.remove("is-low-power");
-        document.documentElement.classList.remove("low-power-effects");
-      };
-    }
-
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(pointer: fine)");
+    let pointerTracking = false;
     let frameId = 0;
     let pointerX = 0;
     let pointerY = 0;
+
     const updatePointerLight = (event) => {
       pointerX = ((event.clientX / window.innerWidth) - 0.5) * 72;
       pointerY = ((event.clientY / window.innerHeight) - 0.5) * 56;
@@ -38,8 +27,27 @@ export default function AmbientBackground() {
       });
     };
 
-    window.addEventListener("pointermove", updatePointerLight, { passive: true });
+    const updateRenderingProfile = () => {
+      const { lowPower } = getRenderingProfile();
+      const shouldTrackPointer = !lowPower && !reducedMotion.matches && finePointer.matches;
+      background.classList.toggle("is-low-power", lowPower);
+      document.documentElement.classList.toggle("low-power-effects", lowPower);
+
+      if (shouldTrackPointer === pointerTracking) return;
+      pointerTracking = shouldTrackPointer;
+      if (pointerTracking) window.addEventListener("pointermove", updatePointerLight, { passive: true });
+      else window.removeEventListener("pointermove", updatePointerLight);
+    };
+
+    updateRenderingProfile();
+    window.addEventListener("resize", updateRenderingProfile, { passive: true });
+    reducedMotion.addEventListener("change", updateRenderingProfile);
+    finePointer.addEventListener("change", updateRenderingProfile);
+
     return () => {
+      window.removeEventListener("resize", updateRenderingProfile);
+      reducedMotion.removeEventListener("change", updateRenderingProfile);
+      finePointer.removeEventListener("change", updateRenderingProfile);
       window.removeEventListener("pointermove", updatePointerLight);
       if (frameId) window.cancelAnimationFrame(frameId);
       background.classList.remove("is-low-power");

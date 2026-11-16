@@ -40,7 +40,7 @@ import {
 } from "../data/portfolio.js";
 import Reveal from "./Reveal.jsx";
 import SectionHeading from "./SectionHeading.jsx";
-import shouldUseLightweightRendering from "../utils/shouldUseLightweightRendering.js";
+import getRenderingProfile from "../utils/getRenderingProfile.js";
 
 const serviceIcons = { Film, Instagram: FaInstagram, Youtube: FaYoutube, PanelsTopLeft, Sparkles, Palette };
 const skillIcons = {
@@ -95,7 +95,7 @@ function resetTilt(event) {
 export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [sceneVisible, setSceneVisible] = useState(false);
-  const [lowPowerScene, setLowPowerScene] = useState(false);
+  const [sceneProfile, setSceneProfile] = useState({ lowPower: false, staticScene: false });
   const reduceMotion = useReducedMotion();
   const heroRef = useRef(null);
   const visualRef = useRef(null);
@@ -127,15 +127,27 @@ export function HeroSection() {
   }, [reduceMotion]);
 
   useEffect(() => {
-    setLowPowerScene(shouldUseLightweightRendering());
+    const updateRenderingProfile = () => {
+      const nextProfile = getRenderingProfile();
+      setSceneProfile((currentProfile) => (
+        currentProfile.lowPower === nextProfile.lowPower
+        && currentProfile.staticScene === nextProfile.staticScene
+          ? currentProfile
+          : nextProfile
+      ));
+    };
+
+    updateRenderingProfile();
+    window.addEventListener("resize", updateRenderingProfile, { passive: true });
+
     if (reduceMotion || !visualRef.current) {
       setSceneVisible(false);
-      return undefined;
+      return () => window.removeEventListener("resize", updateRenderingProfile);
     }
 
     if (!("IntersectionObserver" in window)) {
       setSceneVisible(true);
-      return undefined;
+      return () => window.removeEventListener("resize", updateRenderingProfile);
     }
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -143,17 +155,20 @@ export function HeroSection() {
     }, { threshold: 0.1 });
 
     observer.observe(visualRef.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateRenderingProfile);
+    };
   }, [reduceMotion]);
 
   useEffect(() => {
-    if (reduceMotion || lowPowerScene || !visualRef.current) return undefined;
+    if (reduceMotion || sceneProfile.lowPower || !visualRef.current) return undefined;
     const context = gsap.context(() => {
       gsap.to(".orbit-one", { rotation: 360, duration: 90, repeat: -1, ease: "none" });
       gsap.to(".orbit-two", { rotation: -360, duration: 110, repeat: -1, ease: "none" });
     }, visualRef);
     return () => context.revert();
-  }, [reduceMotion, lowPowerScene]);
+  }, [reduceMotion, sceneProfile.lowPower]);
 
   useEffect(() => {
     if (reduceMotion) return undefined;
@@ -236,10 +251,18 @@ export function HeroSection() {
           onPointerMove={handleVisualPointerMove}
           onPointerLeave={resetVisualPointer}
         >
-          <div className="hero-scene-wrap" aria-hidden="true">
+          <div
+            className="hero-scene-wrap"
+            data-render-mode={sceneProfile.staticScene ? "static" : sceneProfile.lowPower ? "reduced" : "full"}
+            aria-hidden="true"
+          >
             {sceneVisible && !reduceMotion && (
               <Suspense fallback={null}>
-                <HeroScene pointerRef={scenePointerRef} lowPower={lowPowerScene} />
+                <HeroScene
+                  pointerRef={scenePointerRef}
+                  lowPower={sceneProfile.lowPower}
+                  staticScene={sceneProfile.staticScene}
+                />
               </Suspense>
             )}
           </div>
