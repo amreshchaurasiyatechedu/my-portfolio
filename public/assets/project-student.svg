@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">Student management project cover</title>
+  <desc id="desc">Illustrative student records dashboard artwork, not a screenshot.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101c31"/><stop offset="1" stop-color="#172e4a"/></linearGradient>
+    <linearGradient id="glow" x2="1"><stop stop-color="#667eff"/><stop offset="1" stop-color="#54d9e8"/></linearGradient>
+  </defs>
+  <rect width="1440" height="810" fill="url(#bg)"/>
+  <circle cx="1190" cy="115" r="290" fill="#5278ff" opacity=".12"/>
+  <rect x="110" y="104" width="1220" height="603" rx="22" fill="#0b1425" stroke="#354765"/>
+  <rect x="110" y="104" width="1220" height="66" rx="22" fill="#111f35"/>
+  <path d="M110 148h1220v22H110z" fill="#111f35"/>
+  <circle cx="151" cy="137" r="8" fill="#70e0df"/>
+  <text x="176" y="143" fill="#eaf1ff" font-family="Arial,sans-serif" font-size="18" font-weight="700">STUDENT DESK</text>
+  <text x="1195" y="141" fill="#91a5c4" font-family="Arial,sans-serif" font-size="14">ACADEMIC RECORDS</text>
+  <rect x="144" y="204" width="262" height="470" rx="12" fill="#101d32"/>
+  <text x="174" y="247" fill="#7489aa" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">MENU</text>
+  <rect x="164" y="270" width="222" height="44" rx="8" fill="#202f4d"/>
+  <circle cx="188" cy="292" r="6" fill="#70e0df"/>
+  <text x="208" y="298" fill="#e5edfc" font-family="Arial,sans-serif" font-size="15">Overview</text>
+  <text x="208" y="356" fill="#9aabc4" font-family="Arial,sans-serif" font-size="15">Students</text>
+  <text x="208" y="408" fill="#9aabc4" font-family="Arial,sans-serif" font-size="15">Courses</text>
+  <text x="208" y="460" fill="#9aabc4" font-family="Arial,sans-serif" font-size="15">Attendance</text>
+  <text x="208" y="512" fill="#9aabc4" font-family="Arial,sans-serif" font-size="15">Results</text>
+  <rect x="444" y="204" width="842" height="102" rx="12" fill="#13223a"/>
+  <text x="478" y="245" fill="#9db0cc" font-family="Arial,sans-serif" font-size="13" letter-spacing="1.8">ILLUSTRATIVE PROJECT COVER</text>
+  <text x="478" y="281" fill="#edf3ff" font-family="Arial,sans-serif" font-size="26" font-weight="700">Student records, organized.</text>
+  <rect x="444" y="330" width="260" height="108" rx="12" fill="#13223a"/>
+  <text x="470" y="369" fill="#8fa3c0" font-family="Arial,sans-serif" font-size="13">ENROLLED STUDENTS</text>
+  <text x="470" y="415" fill="#f3f6ff" font-family="Arial,sans-serif" font-size="32" font-weight="700">Records</text>
+  <rect x="720" y="330" width="260" height="108" rx="12" fill="#13223a"/>
+  <text x="746" y="369" fill="#8fa3c0" font-family="Arial,sans-serif" font-size="13">ACADEMIC TRACKING</text>
+  <text x="746" y="415" fill="#6fe0db" font-family="Arial,sans-serif" font-size="26" font-weight="700">Attendance</text>
+  <rect x="996" y="330" width="290" height="108" rx="12" fill="#13223a"/>
+  <text x="1022" y="369" fill="#8fa3c0" font-family="Arial,sans-serif" font-size="13">COURSE OVERVIEW</text>
+  <text x="1022" y="415" fill="#f3f6ff" font-family="Arial,sans-serif" font-size="26" font-weight="700">Learning</text>
+  <rect x="444" y="462" width="842" height="212" rx="12" fill="#101d32" stroke="#253956"/>
+  <text x="472" y="499" fill="#dce6f7" font-family="Arial,sans-serif" font-size="15" font-weight="700">STUDENT DIRECTORY</text>
+  <path d="M472 522h786M472 566h786M472 610h786M472 654h786" stroke="#253956"/>
+  <text x="490" y="550" fill="#9aabc4" font-family="Arial,sans-serif" font-size="13">Student profile</text>
+  <text x="760" y="550" fill="#9aabc4" font-family="Arial,sans-serif" font-size="13">Course</text>
+  <text x="1045" y="550" fill="#9aabc4" font-family="Arial,sans-serif" font-size="13">Status</text>
+  <text x="490" y="595" fill="#cbd7ea" font-family="Arial,sans-serif" font-size="13">Student record</text>
+  <text x="760" y="595" fill="#cbd7ea" font-family="Arial,sans-serif" font-size="13">Academic program</text>
+  <text x="1045" y="595" fill="#70e0df" font-family="Arial,sans-serif" font-size="13">Active</text>
+  <text x="490" y="640" fill="#cbd7ea" font-family="Arial,sans-serif" font-size="13">Student record</text>
+  <text x="760" y="640" fill="#cbd7ea" font-family="Arial,sans-serif" font-size="13">Academic program</text>
+  <text x="1045" y="640" fill="#70e0df" font-family="Arial,sans-serif" font-size="13">Active</text>
+</svg>
