@@ -988,3 +988,53 @@ body {
 @keyframes studio-object-float-two { 50% { translate: 0 9px; } }
 @keyframes studio-object-float-three { 50% { translate: 0 -6px; } }
 @keyframes studio-playhead { to { left: 100%; } }
+
+.contact { position: relative; isolation: isolate; }
+.contact::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3% 0;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 12% 48%, rgba(35, 91, 196, .14), transparent 43%),
+    radial-gradient(ellipse at 87% 68%, rgba(27, 159, 188, .1), transparent 46%);
+  content: "";
+  opacity: .8;
+  pointer-events: none;
+  animation: contact-light-drift 24s ease-in-out infinite alternate;
+}
+.contact-heading, .contact-layout { position: relative; z-index: 1; }
+.contact-form { transition: border-color .25s ease, box-shadow .25s ease; }
+.contact-form:focus-within { border-color: rgba(103, 226, 246, .42); box-shadow: 0 18px 48px rgba(0, 0, 0, .2), 0 0 28px rgba(55, 152, 220, .08); }
+.contact-field { transition: color .2s ease, transform .2s ease; }
+.contact-field:focus-within { color: #b7efff; transform: translateY(-1px); }
+.contact-field input, .contact-field select, .contact-field textarea { caret-color: #75e3f5; }
+.contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus { box-shadow: 0 0 0 3px rgba(103, 226, 246, .1), 0 0 20px rgba(57, 153, 222, .09); }
+.contact-channel-list a:focus-visible { border-radius: 2px; outline: 2px solid rgba(103, 226, 246, .72); outline-offset: 4px; }
+.contact-channel-list a svg { transition: color .2s ease, transform .2s ease, filter .2s ease; }
+.contact-channel-list a:hover svg:not(.contact-arrow), .contact-channel-list a:focus-visible svg:not(.contact-arrow) { transform: scale(1.13) rotate(-5deg); filter: drop-shadow(0 0 5px rgba(103, 226, 246, .44)); }
+.contact-channel-list a .contact-arrow { transition: transform .2s ease; }
+.contact-channel-list a:hover .contact-arrow, .contact-channel-list a:focus-visible .contact-arrow { transform: translate(2px, -2px); }
+
+.hero-scene-fallback { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, rgba(48, 132, 237, .21), rgba(54, 206, 232, .08) 43%, transparent 72%); filter: blur(14px); }
+.ambient-background.is-low-power .ambient-mesh,
+.ambient-background.is-low-power .ambient-orb,
+.ambient-background.is-low-power .ambient-network,
+.ambient-background.is-low-power .ambient-network-nodes circle { animation: none; will-change: auto; }
+.ambient-background.is-low-power .ambient-network { display: none; }
+.ambient-background.is-low-power .ambient-pointer-light { display: none; }
+.ambient-background.is-low-power .ambient-orb { opacity: .075; filter: blur(72px); }
+.ambient-background.is-low-power .ambient-grid { opacity: .055; }
+.low-power-effects .hero-tech-icon, .low-power-effects .hero-visual .visual-orbit { animation: none; }
+.low-power-effects .contact::before { animation: none; }
+
+@keyframes contact-light-drift {
+  from { opacity: .55; transform: translate3d(-.5%, 0, 0) scale(.99); }
+  to { opacity: .95; transform: translate3d(.5%, -1%, 0) scale(1.01); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact::before { animation: none; }
+}
+@media (max-width: 680px), (pointer: coarse) {
+  .contact::before { animation: none; }
+}

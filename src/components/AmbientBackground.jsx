@@ -1,12 +1,26 @@
 import { useEffect, useRef } from "react";
+import shouldUseLightweightRendering from "../utils/shouldUseLightweightRendering.js";
 
 export default function AmbientBackground() {
   const backgroundRef = useRef(null);
 
   useEffect(() => {
     const background = backgroundRef.current;
-    if (!background || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !window.matchMedia("(pointer: fine)").matches) {
-      return undefined;
+    if (!background) return undefined;
+
+    const lightweight = shouldUseLightweightRendering();
+    background.classList.toggle("is-low-power", lightweight);
+    document.documentElement.classList.toggle("low-power-effects", lightweight);
+
+    if (
+      lightweight
+      || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      || !window.matchMedia("(pointer: fine)").matches
+    ) {
+      return () => {
+        background.classList.remove("is-low-power");
+        document.documentElement.classList.remove("low-power-effects");
+      };
     }
 
     let frameId = 0;
@@ -28,6 +42,8 @@ export default function AmbientBackground() {
     return () => {
       window.removeEventListener("pointermove", updatePointerLight);
       if (frameId) window.cancelAnimationFrame(frameId);
+      background.classList.remove("is-low-power");
+      document.documentElement.classList.remove("low-power-effects");
     };
   }, []);
 

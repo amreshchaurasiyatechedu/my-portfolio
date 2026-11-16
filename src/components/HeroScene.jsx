@@ -1,13 +1,21 @@
 import { Component, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Sparkles } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { AdaptiveDpr, Float, MeshDistortMaterial, PerformanceMonitor, Sparkles } from "@react-three/drei";
 import { MathUtils } from "three";
 
-function SceneObjects({ pointerRef }) {
+function AdaptivePerformance() {
+  const regress = useThree((state) => state.performance.regress);
+
+  return <PerformanceMonitor factor={1} onDecline={regress} onFallback={regress} />;
+}
+
+function SceneObjects({ pointerRef, lowPower }) {
   const groupRef = useRef(null);
   const coreRef = useRef(null);
 
   useFrame(({ camera, clock }, delta) => {
+    if (lowPower) return;
+
     const pointer = pointerRef.current;
     const group = groupRef.current;
 
@@ -31,6 +39,26 @@ function SceneObjects({ pointerRef }) {
     }
   });
 
+  if (lowPower) {
+    return (
+      <>
+        <ambientLight intensity={0.75} />
+        <pointLight color="#397cff" intensity={3} position={[2, 2, 3]} distance={6} />
+        <group position={[1.45, 0.1, 0]}>
+          <mesh rotation={[0.2, 0.3, 0]}>
+            <icosahedronGeometry args={[0.82, 1]} />
+            <meshStandardMaterial color="#2868df" emissive="#135fc5" emissiveIntensity={0.4} metalness={0.35} roughness={0.35} />
+          </mesh>
+          <mesh rotation={[0.62, 0.32, -0.38]}>
+            <torusGeometry args={[1.06, 0.012, 6, 48]} />
+            <meshBasicMaterial color="#8beaff" transparent opacity={0.6} />
+          </mesh>
+        </group>
+        <Sparkles count={10} scale={[4.2, 4.2, 2.4]} size={1.6} speed={0} opacity={0.45} color="#6ee5ff" />
+      </>
+    );
+  }
+
   return (
     <>
       <ambientLight intensity={0.65} />
@@ -40,7 +68,7 @@ function SceneObjects({ pointerRef }) {
         <Float speed={0.7} rotationIntensity={0.12} floatIntensity={0.17} floatingRange={[-0.1, 0.1]}>
           <group position={[1.75, 1.72, -0.2]}>
             <mesh ref={coreRef} scale={0.62}>
-              <icosahedronGeometry args={[0.8, 3]} />
+              <icosahedronGeometry args={[0.8, 2]} />
               <MeshDistortMaterial
                 color="#2868df"
                 emissive="#135fc5"
@@ -52,11 +80,11 @@ function SceneObjects({ pointerRef }) {
               />
             </mesh>
             <mesh rotation={[0.62, 0.32, -0.38]}>
-              <torusGeometry args={[0.78, 0.012, 8, 96]} />
+              <torusGeometry args={[0.78, 0.012, 8, 64]} />
               <meshBasicMaterial color="#8beaff" transparent opacity={0.74} />
             </mesh>
             <mesh rotation={[-0.48, 0.9, 0.54]} scale={[1.16, 0.82, 1]}>
-              <torusGeometry args={[0.78, 0.008, 8, 96]} />
+              <torusGeometry args={[0.78, 0.008, 8, 64]} />
               <meshBasicMaterial color="#618dff" transparent opacity={0.45} />
             </mesh>
           </group>
@@ -76,7 +104,7 @@ function SceneObjects({ pointerRef }) {
           </mesh>
         </Float>
       </group>
-      <Sparkles count={42} scale={[4.8, 4.8, 2.8]} size={2.1} speed={0.18} opacity={0.62} color="#6ee5ff" />
+      <Sparkles count={32} scale={[4.8, 4.8, 2.8]} size={2.1} speed={0.18} opacity={0.62} color="#6ee5ff" />
     </>
   );
 }
@@ -93,22 +121,26 @@ class SceneErrorBoundary extends Component {
   }
 
   render() {
-    return this.state.hasError ? null : this.props.children;
+    return this.state.hasError ? <div className="hero-scene-fallback" aria-hidden="true" /> : this.props.children;
   }
 }
 
-export default function HeroScene({ pointerRef }) {
+export default function HeroScene({ pointerRef, lowPower }) {
   return (
     <SceneErrorBoundary>
       <Canvas
         aria-hidden="true"
         camera={{ position: [0, 0, 6], fov: 43 }}
-        dpr={[1, 1.25]}
-        gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
-        performance={{ min: 0.6 }}
+        dpr={lowPower ? [0.75, 1] : [1, 1.25]}
+        frameloop={lowPower ? "demand" : "always"}
+        fallback={<div className="hero-scene-fallback" />}
+        gl={{ alpha: true, antialias: !lowPower, powerPreference: "low-power" }}
+        performance={{ min: lowPower ? 0.75 : 0.6, debounce: 3000 }}
         onCreated={({ gl }) => gl.setClearColor("#050a18", 0)}
       >
-        <SceneObjects pointerRef={pointerRef} />
+        {!lowPower && <AdaptivePerformance />}
+        <AdaptiveDpr pixelated />
+        <SceneObjects pointerRef={pointerRef} lowPower={lowPower} />
       </Canvas>
     </SceneErrorBoundary>
   );

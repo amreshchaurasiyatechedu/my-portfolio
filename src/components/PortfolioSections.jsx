@@ -40,6 +40,7 @@ import {
 } from "../data/portfolio.js";
 import Reveal from "./Reveal.jsx";
 import SectionHeading from "./SectionHeading.jsx";
+import shouldUseLightweightRendering from "../utils/shouldUseLightweightRendering.js";
 
 const serviceIcons = { Film, Instagram: FaInstagram, Youtube: FaYoutube, PanelsTopLeft, Sparkles, Palette };
 const skillIcons = {
@@ -94,6 +95,7 @@ function resetTilt(event) {
 export function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [sceneVisible, setSceneVisible] = useState(false);
+  const [lowPowerScene, setLowPowerScene] = useState(false);
   const reduceMotion = useReducedMotion();
   const heroRef = useRef(null);
   const visualRef = useRef(null);
@@ -125,6 +127,7 @@ export function HeroSection() {
   }, [reduceMotion]);
 
   useEffect(() => {
+    setLowPowerScene(shouldUseLightweightRendering());
     if (reduceMotion || !visualRef.current) {
       setSceneVisible(false);
       return undefined;
@@ -144,13 +147,13 @@ export function HeroSection() {
   }, [reduceMotion]);
 
   useEffect(() => {
-    if (reduceMotion || !visualRef.current) return undefined;
+    if (reduceMotion || lowPowerScene || !visualRef.current) return undefined;
     const context = gsap.context(() => {
       gsap.to(".orbit-one", { rotation: 360, duration: 90, repeat: -1, ease: "none" });
       gsap.to(".orbit-two", { rotation: -360, duration: 110, repeat: -1, ease: "none" });
     }, visualRef);
     return () => context.revert();
-  }, [reduceMotion]);
+  }, [reduceMotion, lowPowerScene]);
 
   useEffect(() => {
     if (reduceMotion) return undefined;
@@ -236,7 +239,7 @@ export function HeroSection() {
           <div className="hero-scene-wrap" aria-hidden="true">
             {sceneVisible && !reduceMotion && (
               <Suspense fallback={null}>
-                <HeroScene pointerRef={scenePointerRef} />
+                <HeroScene pointerRef={scenePointerRef} lowPower={lowPowerScene} />
               </Suspense>
             )}
           </div>

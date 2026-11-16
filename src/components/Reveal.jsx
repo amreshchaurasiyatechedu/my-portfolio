@@ -1,8 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function Reveal({ as = "div", className = "", children, delay = 0, ...props }) {
+export default function Reveal({ as = "div", className = "", children, delay = 0, ref: forwardedRef, ...props }) {
   const elementRef = useRef(null);
+  const setRefs = useCallback((element) => {
+    elementRef.current = element;
+    if (typeof forwardedRef === "function") forwardedRef(element);
+    else if (forwardedRef) forwardedRef.current = element;
+  }, [forwardedRef]);
 
   useEffect(() => {
     const element = elementRef.current;
@@ -109,5 +114,5 @@ export default function Reveal({ as = "div", className = "", children, delay = 0
   }, [delay]);
 
   const Element = as;
-  return <Element {...props} ref={elementRef} className={`reveal ${className}`.trim()}>{children}</Element>;
+  return <Element {...props} ref={setRefs} className={`reveal ${className}`.trim()}>{children}</Element>;
 }
