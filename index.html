@@ -1,70 +1,580 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#070b14" />
-    <meta name="author" content="Amresh Chaurasiya" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta
-      name="description"
-      content="Amresh Chaurasiya is an IT student, aspiring full stack developer, AI enthusiast, and founder of Click Craft Studio."
-    />
-    <link rel="canonical" href="https://amreshchaurasiyatechedu.github.io/" />
-    <link rel="preload" as="image" href="/assets/amresh-at-work.jpg" fetchpriority="high" />
-    <meta property="og:locale" content="en_IN" />
-    <meta property="og:site_name" content="Amresh Chaurasiya" />
-    <meta property="og:title" content="Amresh Chaurasiya | Developer &amp; Click Craft Studio Founder" />
-    <meta
-      property="og:description"
-      content="Building digital experiences through technology, creativity and innovation."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://amreshchaurasiyatechedu.github.io/" />
-    <meta property="og:image" content="https://amreshchaurasiyatechedu.github.io/og-image.jpg" />
-    <meta property="og:image:secure_url" content="https://amreshchaurasiyatechedu.github.io/og-image.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Amresh Chaurasiya — Developer, Creator and Click Craft Studio Founder" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Amresh Chaurasiya | Developer &amp; Click Craft Studio Founder" />
-    <meta name="twitter:description" content="Building digital experiences through technology, creativity and innovation." />
-    <meta name="twitter:image" content="https://amreshchaurasiyatechedu.github.io/og-image.jpg" />
-    <meta name="twitter:image:alt" content="Amresh Chaurasiya — Developer, Creator and Click Craft Studio Founder" />
-    <title>Amresh Chaurasiya | Developer &amp; Click Craft Studio Founder</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Amresh Chaurasiya",
-        "url": "https://amreshchaurasiyatechedu.github.io/",
-        "image": "https://amreshchaurasiyatechedu.github.io/assets/amresh-at-work.jpg",
-        "jobTitle": "Aspiring Full Stack Developer",
-        "description": "B.Sc. Information Technology student, software developer, AI enthusiast, and founder of Click Craft Studio.",
-        "sameAs": [
-          "https://github.com/amreshchaurasiyatechedu",
-          "https://www.linkedin.com/in/amresh-chaurasiya"
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Click Craft Studio",
-          "url": "https://click-craft-studio.netlify.app/"
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amresh Chaurasiya | Portfolio</title>
+
+    <meta name="description" content="Portfolio of Amresh Chaurasiya, B.Sc. Information Technology student and aspiring Full Stack Developer. Explore projects, skills, certifications, and experience.">
+
+    <meta property="og:title" content="Amresh Chaurasiya | Portfolio">
+    <meta property="og:description" content="B.Sc. IT student and aspiring Full Stack Developer — projects, skills, certifications, and experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="profile1.jpeg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amresh Chaurasiya | Portfolio">
+    <meta name="twitter:description" content="B.Sc. IT student and aspiring Full Stack Developer — projects, skills, certifications, and experience.">
+    <meta name="twitter:image" content="profile1.jpeg">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= LOADER ================= -->
+
+    <div id="loader">
+
+        <div class="spinner"></div>
+
+    </div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+
+            <h2>Amresh<span>.</span></h2>
+
+        </div>
+
+        <nav>
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+        <button id="themeBtn">
+
+            🌙
+
+        </button>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+
+            <h3>Hello, I'm</h3>
+
+            <h1>Amresh Chaurasiya</h1>
+
+            <h2>
+
+                <span id="typing"></span>
+
+            </h2>
+
+            <p>
+
+                Passionate B.Sc. Information Technology student who enjoys
+                creating websites, learning new technologies and preparing
+                for placements in top IT companies.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button id="resumeBtn">
+
+                    Download Resume
+
+                </button>
+
+                <button onclick="contactMe()">
+
+                    Contact Me
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="profile1.jpeg" alt="Profile">
+
+        </div>
+
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about">
+
+        <h2 class="title">About Me</h2>
+
+        <div class="about-container">
+
+            <div class="about-left">
+
+                <img src="profile.jpeg" alt="Profile">
+
+            </div>
+
+            <div class="about-right">
+
+                <h3>Personal Information</h3>
+
+                <p><b>Name :</b> Amresh Chaurasiya</p>
+
+                <p><b>Course :</b> B.Sc. Information Technology</p>
+
+                <p><b>Year :</b> Third Year (TY)</p>
+
+                <p><b>College :</b> Vedanta College</p>
+
+                <p><b>Email :</b> amreshchaurasiya300@gmail.com</p>
+
+                <p><b>Phone :</b> +91 8446813359</p>
+
+                <p>
+
+                    My goal is to become a Full Stack Developer and work in
+                    a reputed IT company where I can improve my skills and
+                    contribute to real-world software projects.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= EDUCATION ================= -->
+
+    <section id="education">
+
+        <h2 class="title">
+
+            Education
+
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>Qualification</th>
+
+                <th>Board / University</th>
+
+                <th>Institute</th>
+
+                <th>Year</th>
+
+                <th>Percentage</th>
+
+            </tr>
+
+            <tr>
+
+                <td>B.Sc. Information Technology</td>
+
+                <td>Mumbai University</td>
+
+                <td>Vedanta College</td>
+
+                <td>2024 - 2027</td>
+
+                <td>Pursuing</td>
+
+            </tr>
+
+            <tr>
+
+                <td>HSC</td>
+
+                <td>Maharashtra Board</td>
+
+                <td>Smt. Chandibai Himathmal Mansukhani College</td>
+
+                <td>2024</td>
+
+                <td>64%</td>
+
+            </tr>
+
+            <tr>
+
+                <td>SSC</td>
+
+                <td>Maharashtra Board</td>
+
+                <td>Dnyanmandir Hindi Vidyalaya</td>
+
+                <td>2022</td>
+
+                <td>86%</td>
+
+            </tr>
+
+        </table>
+
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+
+    <section id="experience">
+
+        <h2 class="title">Experience</h2>
+
+        <div class="experience-card">
+
+            <div class="experience-header">
+
+                <h3>Graphics Designer & Video Editor</h3>
+
+                <span class="experience-meta">Deva Media &bull; 2026 &bull; 2 Months</span>
+
+            </div>
+
+            <ul>
+
+                <li>Designed promotional banners and social media creatives.</li>
+
+                <li>Edited promotional videos.</li>
+
+                <li>Collaborated with the creative team.</li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <h2 class="title">
+
+            Technical Skills
+
+        </h2>
+
+        <div class="skill">
+
+            <span>HTML</span>
+
+            <div class="bar">
+
+                <div class="progress html" data-width="90%"></div>
+
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <span>CSS</span>
+
+            <div class="bar">
+
+                <div class="progress css" data-width="85%"></div>
+
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <span>JavaScript</span>
+
+            <div class="bar">
+
+                <div class="progress js" data-width="80%"></div>
+
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <span>Python</span>
+
+            <div class="bar">
+
+                <div class="progress python" data-width="75%"></div>
+
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <span>Java</span>
+
+            <div class="bar">
+
+                <div class="progress java" data-width="70%"></div>
+
+            </div>
+
+        </div>
+
+                <!-- ================= PROJECTS ================= -->
+
+    </section>
+
+   <section id="projects">
+
+    <h2 class="title">My Projects</h2>
+
+    <div class="carousel-container">
+
+        <button class="carousel-btn left" onclick="scrollLeftProjects()">
+            &#10094;
+        </button>
+
+        <div class="carousel" id="carousel">
+
+            <div class="project-card">
+                <img src="img1.jpg" alt="Project 1">
+                <h3>Zombie Stage Website</h3>
+                <p>HTML • CSS • JavaScript</p>
+                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="img2.jpg" alt="Project 2">
+                <h3>Student Management System</h3>
+                <p>Java • MySQL</p>
+                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="img3.jpg" alt="Project 3">
+                <h3>Calculator</h3>
+                <p>JavaScript Project</p>
+                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="img4.jpg" alt="Project 4">
+                <h3>Portfolio Website</h3>
+                <p>Responsive Portfolio</p>
+                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="img5.jpg" alt="Clothing E-Commerce Website">
+                <h3>Clothing E-Commerce Website</h3>
+                <p>HTML5 • CSS3 • JavaScript</p>
+                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
+            </div>
+
+        </div>
+
+        <button class="carousel-btn right" onclick="scrollRightProjects()">
+            &#10095;
+        </button>
+
+    </div>
+
+</section>
+
+    <!-- ================= CERTIFICATIONS ================= -->
+
+    <section id="certifications">
+
+        <h2 class="title">Certifications</h2>
+
+        <div class="cert-grid">
+
+            <div class="cert-card">
+                <h3>Data Analytics Job Simulation</h3>
+                <p>Deloitte (Forage)</p>
+                <span>Apr 2026</span>
+            </div>
+
+            <div class="cert-card">
+                <h3>Soft Skills, Communication & Interview Skills</h3>
+                <p>TCS</p>
+                <span>2026</span>
+            </div>
+
+            <div class="cert-card">
+                <h3>NLP, Git & GitHub, DevOps, Data Science Basics</h3>
+                <p>Hunarho</p>
+                <span>2026</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+
+    <section id="achievements">
+
+        <h2 class="title">Achievements</h2>
+
+        <ul>
+
+            <li>Completed College Mini Projects.</li>
+
+            <li>Completed Deloitte Data Analytics Job Simulation.</li>
+
+            <li>Completed TCS skill development programs.</li>
+
+            <li>Earned certifications in NLP, Git & GitHub, DevOps, and Data Science Basics.</li>
+
+            <li>Actively learning Full Stack & MERN Stack Development.</li>
+
+        </ul>
+
+    </section>
+
+    <!-- ================= STRENGTHS ================= -->
+
+    <section id="strengths">
+
+        <h2 class="title">Strengths</h2>
+
+        <div class="strength-box">
+
+            <div class="card">Quick Learner</div>
+
+            <div class="card">Problem Solver</div>
+
+            <div class="card">Hard Working</div>
+
+            <div class="card">Team Player</div>
+
+            <div class="card">Self Motivated</div>
+
+            <div class="card">Good Communication</div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LANGUAGES ================= -->
+
+    <section id="languages">
+
+        <h2 class="title">Languages Known</h2>
+
+        <div class="language-box">
+
+            <span>English</span>
+
+            <span>Hindi</span>
+
+            <span>Marathi</span>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <h2 class="title">Contact Me</h2>
+
+        <div class="contact-container">
+
+            <div class="contact-info">
+
+                <h3>Get In Touch</h3>
+
+                <p><strong>Name:</strong> Amresh Chaurasiya</p>
+
+                <p><strong>Email:</strong> amreshchaurasiya300@gmail.com</p>
+
+                <p><strong>Phone:</strong> +91 8446813359</p>
+
+                <p><strong>College:</strong> Vedanta College</p>
+
+            </div>
+
+            <form>
+
+                <input type="text" placeholder="Your Name" required>
+
+                <input type="email" placeholder="Your Email" required>
+
+                <textarea rows="6" placeholder="Your Message"></textarea>
+
+                <button type="submit">
+
+                    Send Message
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>Amresh Chaurasiya</h3>
+
+        <p>
+            B.Sc. Information Technology Student | Web Developer | MERN Learner
+        </p>
+
+        <div class="social-icons">
+
+            <a href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+
+            <a href="https://www.linkedin.com/in/amresh-chaurasiya" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+
+            <a href="https://www.instagram.com/amresh_chaurasiya_1234" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+
+            <a href="mailto:amreshchaurasiya300@gmail.com"><i class="fas fa-envelope"></i></a>
+
+        </div>
+
+        <p>
+
+            © 2026 Amresh Chaurasiya. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <!-- Scroll To Top -->
+
+    <button id="topBtn" onclick="topPage()">
+
+        ↑
+
+    </button>
+
+    <!-- JavaScript -->
+
+    <script src="JavaScript.js"></script>
+
+</body>
+
 </html>
