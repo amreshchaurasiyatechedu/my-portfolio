@@ -964,6 +964,103 @@ document.querySelectorAll(".project-card img").forEach(image=>{
 
 
 /* ==========================================
+   PROJECT DETAILS DIALOG
+========================================== */
+
+const projectModal = document.getElementById("project-modal");
+const projectModalContent = projectModal?.querySelector(".project-modal-content");
+const projectModalCloseButton = projectModal?.querySelector("[data-close-project-details]");
+let activeProjectTrigger = null;
+let projectModalCloseTimer = null;
+let previousBodyOverflow = "";
+
+function closeProjectDetails(){
+
+    if(!projectModal || !projectModal.open) return;
+
+    projectModal.classList.add("is-closing");
+    clearTimeout(projectModalCloseTimer);
+
+    projectModalCloseTimer = window.setTimeout(()=>{
+
+        if(projectModal.open) projectModal.close();
+
+    },180);
+
+}
+
+document.querySelectorAll("[data-project-details]").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const template = document.getElementById(button.dataset.projectDetails);
+
+        if(!projectModal || !projectModalContent || !projectModalCloseButton){
+            console.error("Project details dialog is missing from the page.");
+            return;
+        }
+
+        if(!template || template.tagName !== "TEMPLATE"){
+            console.error("Project details template not found:", button.dataset.projectDetails);
+            return;
+        }
+
+        clearTimeout(projectModalCloseTimer);
+        projectModal.classList.remove("is-closing");
+        projectModalContent.replaceChildren(template.content.cloneNode(true));
+        activeProjectTrigger = button;
+        activeProjectTrigger.setAttribute("aria-expanded","true");
+        previousBodyOverflow = document.body.style.overflow;
+
+        if(!projectModal.open) projectModal.showModal();
+
+        document.body.style.overflow = "hidden";
+        projectModalCloseButton.focus();
+
+    });
+
+});
+
+projectModalCloseButton?.addEventListener("click",closeProjectDetails);
+
+projectModal?.addEventListener("click",event=>{
+
+    if(event.target === projectModal) closeProjectDetails();
+
+});
+
+projectModal?.addEventListener("cancel",event=>{
+
+    event.preventDefault();
+    closeProjectDetails();
+
+});
+
+projectModal?.addEventListener("keydown",event=>{
+
+    if(event.key === "Escape"){
+        event.preventDefault();
+        closeProjectDetails();
+    }
+
+});
+
+projectModal?.addEventListener("close",()=>{
+
+    clearTimeout(projectModalCloseTimer);
+    projectModal.classList.remove("is-closing");
+    document.body.style.overflow = previousBodyOverflow;
+
+    if(activeProjectTrigger){
+        activeProjectTrigger.setAttribute("aria-expanded","false");
+        activeProjectTrigger.focus();
+        activeProjectTrigger = null;
+    }
+
+});
+
+
+/* ==========================================
    TOAST NOTIFICATION
 ========================================== */
 

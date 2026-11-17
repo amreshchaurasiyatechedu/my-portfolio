@@ -346,54 +346,266 @@
 
     <div class="carousel-container">
 
-        <button class="carousel-btn left" onclick="scrollLeftProjects()">
+        <button class="carousel-btn left" type="button" aria-label="Scroll projects left" onclick="scrollLeftProjects()">
             &#10094;
         </button>
 
-        <div class="carousel" id="carousel">
+        <div class="carousel" id="carousel" aria-label="Project cards">
 
-            <div class="project-card">
-                <img src="img1.jpg" alt="Project 1">
-                <h3>Zombie Stage Website</h3>
-                <p>HTML • CSS • JavaScript</p>
-                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
-            </div>
+            <article class="project-card">
+                <img class="project-image" src="project-assets/clothing-preview.jpg" alt="Men's clothing product from the YAARI FITS catalog" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>Men's Clothing E-Commerce Website</h3>
+                    <p class="project-description">A full-stack men's fashion storefront for discovering products, choosing variants, and managing a smooth shopping journey.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-router">React Router</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-mongodb">MongoDB</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                    </div>
+                    <button class="project-detail-button" type="button" data-project-details="project-details-clothing" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                        View Details <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </article>
 
-            <div class="project-card">
-                <img src="img2.jpg" alt="Project 2">
-                <h3>Student Management System</h3>
-                <p>Java • MySQL</p>
-                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
-            </div>
+            <article class="project-card">
+                <img class="project-image" src="project-assets/school-erp-preview.svg" alt="Illustrative School ERP dashboard preview" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>School ERP System</h3>
+                    <p class="project-description">A centralized school and college management system for student records, attendance, academic information, and institutional operations.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-python">Python</span>
+                        <span class="tech-badge tech-flask">Flask</span>
+                        <span class="tech-badge tech-mysql">MySQL</span>
+                        <span class="tech-badge tech-html">HTML</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                        <span class="tech-badge tech-javascript">JavaScript</span>
+                    </div>
+                    <button class="project-detail-button" type="button" data-project-details="project-details-erp" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                        View Details <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </article>
 
-            <div class="project-card">
-                <img src="img3.jpg" alt="Project 3">
-                <h3>Calculator</h3>
-                <p>JavaScript Project</p>
-                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
-            </div>
+            <article class="project-card">
+                <img class="project-image" src="project-assets/python-learning-preview.svg" alt="Illustrative Python learning roadmap and final exam preview" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>30-Day Python Learning Platform</h3>
+                    <p class="project-description">A structured 29-day learning path with lessons, hands-on practice, progress tracking, and a 100-mark final exam that unlocks after completion.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-supabase">Supabase</span>
+                        <span class="tech-badge tech-pyodide">Pyodide</span>
+                    </div>
+                    <button class="project-detail-button" type="button" data-project-details="project-details-python" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                        View Details <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </article>
 
-            <div class="project-card">
-                <img src="img4.jpg" alt="Project 4">
-                <h3>Portfolio Website</h3>
-                <p>Responsive Portfolio</p>
-                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
-            </div>
-
-            <div class="project-card">
-                <img src="img5.jpg" alt="Clothing E-Commerce Website">
-                <h3>Clothing E-Commerce Website</h3>
-                <p>HTML5 • CSS3 • JavaScript</p>
-                <a class="project-link" href="https://github.com/amreshchaurasiyatechedu" target="_blank" rel="noopener noreferrer">View Code →</a>
-            </div>
+            <article class="project-card">
+                <img class="project-image project-image-brand" src="project-assets/click-craft-brand.webp" alt="Click Craft Studio brand identity artwork" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>Click Craft Studio</h3>
+                    <p class="project-description">A creative digital services brand for video editing, Reels and YouTube content, motion graphics, graphic design, and social media management.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-html">HTML</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                        <span class="tech-badge tech-javascript">JavaScript</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-netlify">Netlify Functions</span>
+                        <span class="tech-badge tech-supabase">Supabase</span>
+                        <span class="tech-badge tech-postgres">PostgreSQL</span>
+                    </div>
+                    <button class="project-detail-button" type="button" data-project-details="project-details-click-craft" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                        View Details <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </article>
 
         </div>
 
-        <button class="carousel-btn right" onclick="scrollRightProjects()">
+        <button class="carousel-btn right" type="button" aria-label="Scroll projects right" onclick="scrollRightProjects()">
             &#10095;
         </button>
 
     </div>
+
+    <dialog class="project-modal" id="project-modal" aria-labelledby="project-modal-title">
+        <div class="project-modal-shell">
+            <div class="project-modal-toolbar">
+                <button class="project-modal-close" type="button" aria-label="Close project details" data-close-project-details>
+                    &times;
+                </button>
+            </div>
+            <div class="project-modal-content"></div>
+        </div>
+    </dialog>
+
+    <template id="project-details-clothing">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Men's fashion commerce</p>
+                <h3 id="project-modal-title">Men's Clothing E-Commerce Website</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/clothing-dashboard.png" alt="YAARI FITS administration dashboard screenshot">
+                <figcaption>Administration dashboard screenshot from the project repository.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A full-stack men's clothing platform with a responsive customer storefront, protected administration dashboard, and an Express API backed by MongoDB.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Product catalogue discovery, product variants, wishlist, and shopping cart.</li>
+                        <li>Customer accounts, address profiles, checkout, order tracking, and payment reconciliation.</li>
+                        <li>Administration for products, categories, customers, and orders.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-router">React Router</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-mongodb">MongoDB</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                    </div>
+                    <h4>Implementation</h4>
+                    <p>The repository separates the React storefront and admin dashboard from a versioned Express REST API. MongoDB stores the application data.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-erp">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Education management</p>
+                <h3 id="project-modal-title">School ERP System</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/school-erp-preview.svg" alt="Illustrative School ERP dashboard concept">
+                <figcaption>Illustrative project-specific preview; an implementation screenshot was not available.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A school and college management system designed to simplify academic and administrative operations through a centralized platform.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Student record management.</li>
+                        <li>Attendance tracking.</li>
+                        <li>Academic information and institutional activities.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-python">Python</span>
+                        <span class="tech-badge tech-flask">Flask</span>
+                        <span class="tech-badge tech-mysql">MySQL</span>
+                        <span class="tech-badge tech-html">HTML</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                        <span class="tech-badge tech-javascript">JavaScript</span>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-python">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Interactive Python education</p>
+                <h3 id="project-modal-title">30-Day Python Learning Platform</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/python-learning-preview.svg" alt="Illustrative Python learning roadmap and final exam">
+                <figcaption>Illustrative roadmap preview; the repository does not include product screenshots.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A Python learning platform with 29 sequential learning days followed by a separate Day 30 final exam worth 100 marks. The exam unlocks after the required learning days are complete.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Structured lessons, runnable examples, coding challenges, quizzes, tests, and assignments.</li>
+                        <li>Browser-based Python practice, plus server-graded course and exam submissions.</li>
+                        <li>Server-confirmed progress, learning analytics, and a randomized final exam.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-supabase">Supabase</span>
+                        <span class="tech-badge tech-postgres">PostgreSQL</span>
+                        <span class="tech-badge tech-pyodide">Pyodide</span>
+                    </div>
+                    <h4>Implementation</h4>
+                    <p>The React and TypeScript client uses Vite. An Express API uses Supabase for authentication and data; Pyodide runs browser practice in a Web Worker, and graded submissions use a configured Judge0-compatible service.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-click-craft">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Creative digital services</p>
+                <h3 id="project-modal-title">Click Craft Studio</h3>
+            </div>
+            <figure class="project-detail-preview project-detail-preview-brand">
+                <img src="project-assets/click-craft-brand.webp" alt="Click Craft Studio brand artwork">
+                <figcaption>Official brand artwork from the project repository; not a website screenshot.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A responsive creative-services website presenting the studio's services and portfolio and helping prospective clients make enquiries or booking requests.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Service catalogue, portfolio browsing, category filters, search, and project previews.</li>
+                        <li>Validated project enquiries and bookings, with optional WhatsApp contact.</li>
+                        <li>Authenticated admin tools for enquiries, website content, and media uploads.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-html">HTML</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                        <span class="tech-badge tech-javascript">JavaScript</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-netlify">Netlify Functions</span>
+                        <span class="tech-badge tech-supabase">Supabase</span>
+                        <span class="tech-badge tech-postgres">PostgreSQL</span>
+                    </div>
+                    <h4>Implementation</h4>
+                    <p>The website uses HTML, CSS, and browser JavaScript modules. Node.js Netlify Functions handle backend requests, with Supabase providing database, authentication, and storage services.</p>
+                    <a class="project-detail-link" href="https://click-craft-studio.netlify.app/" target="_blank" rel="noopener noreferrer">
+                        Visit live website <span aria-hidden="true">↗</span>
+                    </a>
+                </section>
+            </div>
+        </article>
+    </template>
 
 </section>
 
