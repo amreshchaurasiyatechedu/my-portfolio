@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">Student Management System dashboard illustration</title>
+  <desc id="description">An academic dashboard illustration with navigation, student counts, attendance, and a records table.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eaf3ff"/>
+      <stop offset="1" stop-color="#f8fbff"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b5394"/>
+      <stop offset="1" stop-color="#1476c8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17406b" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="700" fill="url(#background)"/>
+  <circle cx="1050" cy="90" r="180" fill="#d9eaff" opacity=".58"/>
+  <rect x="98" y="58" width="1004" height="584" rx="26" fill="#fff" filter="url(#shadow)"/>
+  <path d="M124 58h180v584H150a26 26 0 0 1-26-26z" fill="url(#panel)"/>
+  <circle cx="163" cy="112" r="18" fill="#d9ecff"/>
+  <path d="M155 112h16m-8-8v16" stroke="#0b5394" stroke-width="4" stroke-linecap="round"/>
+  <text x="192" y="119" fill="#fff" font-family="Arial,sans-serif" font-size="21" font-weight="700">CampusDesk</text>
+  <text x="151" y="180" fill="#b9ddff" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">WORKSPACE</text>
+  <rect x="143" y="200" width="142" height="43" rx="12" fill="#ffffff" opacity=".18"/>
+  <circle cx="163" cy="221" r="7" fill="#fff"/>
+  <text x="181" y="226" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Dashboard</text>
+  <g fill="#d7eaff" font-family="Arial,sans-serif" font-size="14">
+    <text x="181" y="278">Students</text><text x="181" y="326">Attendance</text>
+    <text x="181" y="374">Courses</text><text x="181" y="422">Results</text>
+  </g>
+  <g fill="none" stroke="#d7eaff" stroke-width="2" opacity=".9">
+    <circle cx="163" cy="273" r="7"/><path d="M155 316h16m-8-8v16"/><path d="M156 358h14v12h-14z"/><path d="M156 408h14v10h-14z"/>
+  </g>
+  <text x="344" y="113" fill="#17344f" font-family="Arial,sans-serif" font-size="25" font-weight="700">Academic overview</text>
+  <text x="344" y="140" fill="#728399" font-family="Arial,sans-serif" font-size="14">A role-based view of school activity</text>
+  <rect x="911" y="91" width="145" height="38" rx="19" fill="#f1f6fc"/>
+  <circle cx="932" cy="110" r="11" fill="#d8eaff"/>
+  <text x="951" y="115" fill="#31506f" font-family="Arial,sans-serif" font-size="12" font-weight="700">Administrator</text>
+  <g filter="url(#shadow)">
+    <rect x="344" y="174" width="213" height="122" rx="17" fill="#fff"/>
+    <rect x="576" y="174" width="213" height="122" rx="17" fill="#fff"/>
+    <rect x="808" y="174" width="248" height="122" rx="17" fill="#fff"/>
+  </g>
+  <g font-family="Arial,sans-serif">
+    <text x="366" y="206" fill="#718198" font-size="13">Active students</text>
+    <text x="366" y="252" fill="#17344f" font-size="34" font-weight="700">1,248</text>
+    <rect x="495" y="217" width="38" height="38" rx="12" fill="#eaf4ff"/>
+    <circle cx="514" cy="230" r="7" fill="none" stroke="#2584d0" stroke-width="2"/>
+    <path d="M503 250c2-8 20-8 22 0" fill="none" stroke="#2584d0" stroke-width="2" stroke-linecap="round"/>
+    <text x="598" y="206" fill="#718198" font-size="13">Attendance today</text>
+    <text x="598" y="252" fill="#17344f" font-size="34" font-weight="700">94.8%</text>
+    <rect x="727" y="217" width="38" height="38" rx="12" fill="#e8f8f2"/>
+    <path d="m737 237 7 7 13-15" fill="none" stroke="#1b9a6c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="830" y="206" fill="#718198" font-size="13">Courses &amp; subjects</text>
+    <text x="830" y="252" fill="#17344f" font-size="34" font-weight="700">36</text>
+    <rect x="993" y="217" width="38" height="38" rx="12" fill="#fff4e8"/>
+    <path d="M1004 228h16v16h-16zM1008 224h8" fill="none" stroke="#eb9840" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <rect x="344" y="320" width="712" height="276" rx="17" fill="#fff" filter="url(#shadow)"/>
+  <text x="370" y="357" fill="#17344f" font-family="Arial,sans-serif" font-size="17" font-weight="700">Recent student records</text>
+  <text x="370" y="390" fill="#8492a5" font-family="Arial,sans-serif" font-size="12" font-weight="700">STUDENT</text>
+  <text x="633" y="390" fill="#8492a5" font-family="Arial,sans-serif" font-size="12" font-weight="700">COURSE</text>
+  <text x="794" y="390" fill="#8492a5" font-family="Arial,sans-serif" font-size="12" font-weight="700">ATTENDANCE</text>
+  <text x="969" y="390" fill="#8492a5" font-family="Arial,sans-serif" font-size="12" font-weight="700">STATUS</text>
+  <path d="M370 407h660M370 467h660M370 527h660" stroke="#e9eef4"/>
+  <g font-family="Arial,sans-serif" font-size="13">
+    <circle cx="388" cy="438" r="14" fill="#e5f1ff"/><text x="381" y="443" fill="#236baa" font-weight="700">AS</text>
+    <text x="413" y="435" fill="#30465e" font-weight="700">Aarav Sharma</text><text x="413" y="451" fill="#8a98aa" font-size="11">Student record</text>
+    <text x="633" y="442" fill="#53677e">Computer Science</text><text x="810" y="442" fill="#53677e">96%</text>
+    <rect x="961" y="426" width="62" height="23" rx="11" fill="#e9f8f1"/><text x="974" y="442" fill="#19845e" font-size="11" font-weight="700">Active</text>
+    <circle cx="388" cy="498" r="14" fill="#f4edff"/><text x="381" y="503" fill="#7455b1" font-weight="700">MK</text>
+    <text x="413" y="495" fill="#30465e" font-weight="700">Meera Kapoor</text><text x="413" y="511" fill="#8a98aa" font-size="11">Student record</text>
+    <text x="633" y="502" fill="#53677e">Business Studies</text><text x="810" y="502" fill="#53677e">91%</text>
+    <rect x="961" y="486" width="62" height="23" rx="11" fill="#e9f8f1"/><text x="974" y="502" fill="#19845e" font-size="11" font-weight="700">Active</text>
+    <circle cx="388" cy="558" r="14" fill="#fff3e8"/><text x="381" y="563" fill="#b8752a" font-weight="700">RG</text>
+    <text x="413" y="555" fill="#30465e" font-weight="700">Riya Gupta</text><text x="413" y="571" fill="#8a98aa" font-size="11">Student record</text>
+    <text x="633" y="562" fill="#53677e">Mathematics</text><text x="810" y="562" fill="#53677e">88%</text>
+    <rect x="961" y="546" width="62" height="23" rx="11" fill="#e9f8f1"/><text x="974" y="562" fill="#19845e" font-size="11" font-weight="700">Active</text>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">Dreamer AI caption editor illustration</title>
+  <desc id="description">A video caption editing workspace with a media preview, timed transcript, and export controls.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#101127"/>
+      <stop offset="1" stop-color="#202447"/>
+    </linearGradient>
+    <linearGradient id="video" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#713be8"/>
+      <stop offset=".52" stop-color="#d848a5"/>
+      <stop offset="1" stop-color="#ff9d59"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#8f6cff"/>
+      <stop offset="1" stop-color="#54d7f0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#060718" flood-opacity=".36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="700" fill="url(#background)"/>
+  <circle cx="1080" cy="85" r="180" fill="#684be4" opacity=".13"/>
+  <circle cx="115" cy="670" r="210" fill="#3ecde0" opacity=".08"/>
+  <rect x="82" y="54" width="1036" height="592" rx="25" fill="#171a34" stroke="#373a5e" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="82" y="54" width="1036" height="67" rx="25" fill="#1d203c"/>
+  <path d="M82 97v-18a25 25 0 0 1 25-25h986a25 25 0 0 1 25 25v18z" fill="#1d203c"/>
+  <circle cx="116" cy="87" r="7" fill="#ff6384"/><circle cx="141" cy="87" r="7" fill="#ffd166"/><circle cx="166" cy="87" r="7" fill="#46d7a2"/>
+  <text x="206" y="94" fill="#f3f4ff" font-family="Arial,sans-serif" font-size="19" font-weight="700">dreamer</text>
+  <rect x="881" y="70" width="116" height="34" rx="17" fill="#292c4b"/>
+  <text x="902" y="92" fill="#cbd0eb" font-family="Arial,sans-serif" font-size="12" font-weight="700">Preview</text>
+  <rect x="1008" y="70" width="84" height="34" rx="17" fill="url(#accent)"/>
+  <text x="1026" y="92" fill="#101127" font-family="Arial,sans-serif" font-size="12" font-weight="700">Export</text>
+  <text x="112" y="157" fill="#aeb4d2" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2">PROJECT / CAPTION STUDIO</text>
+  <text x="112" y="188" fill="#fff" font-family="Arial,sans-serif" font-size="22" font-weight="700">Make every word land.</text>
+  <rect x="112" y="211" width="600" height="327" rx="17" fill="#0c0d1d" stroke="#3b3d5d"/>
+  <rect x="129" y="228" width="566" height="250" rx="12" fill="url(#video)"/>
+  <path d="M129 433c90-130 155-74 238-166 56-62 121-29 184-94 54 62 91 119 144 106v199H129z" fill="#28134f" opacity=".55"/>
+  <circle cx="408" cy="347" r="41" fill="#fff" opacity=".2"/>
+  <path d="m398 327 34 20-34 20z" fill="#fff"/>
+  <rect x="254" y="416" width="316" height="41" rx="11" fill="#16132b" opacity=".91"/>
+  <text x="274" y="443" fill="#fff" font-family="Arial,sans-serif" font-size="19" font-weight="700">Your story, word by word.</text>
+  <rect x="131" y="496" width="113" height="25" rx="12" fill="#282b4b"/>
+  <text x="150" y="513" fill="#c1c8e8" font-family="Arial,sans-serif" font-size="11" font-weight="700">9:16 PREVIEW</text>
+  <rect x="258" y="496" width="101" height="25" rx="12" fill="#263c52"/>
+  <circle cx="273" cy="508" r="4" fill="#56d8ef"/><text x="284" y="513" fill="#c1e9f5" font-family="Arial,sans-serif" font-size="11">Transcribed</text>
+  <rect x="730" y="211" width="358" height="327" rx="17" fill="#20233f" stroke="#3b3d5d"/>
+  <text x="755" y="246" fill="#f7f7ff" font-family="Arial,sans-serif" font-size="16" font-weight="700">Timed transcript</text>
+  <text x="755" y="271" fill="#9098bb" font-family="Arial,sans-serif" font-size="12">Review words and timing</text>
+  <rect x="751" y="292" width="316" height="55" rx="12" fill="#2b2e50"/>
+  <text x="769" y="315" fill="#8f9abf" font-family="Arial,sans-serif" font-size="11">00:00.8 – 00:02.4</text>
+  <text x="769" y="335" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Great ideas start small.</text>
+  <rect x="751" y="358" width="316" height="55" rx="12" fill="#2b2e50"/>
+  <text x="769" y="381" fill="#8f9abf" font-family="Arial,sans-serif" font-size="11">00:02.5 – 00:04.1</text>
+  <text x="769" y="401" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Then grow with every step.</text>
+  <rect x="751" y="424" width="316" height="55" rx="12" fill="#2c2854" stroke="#8f6cff"/>
+  <text x="769" y="447" fill="#b5a7ff" font-family="Arial,sans-serif" font-size="11">00:04.2 – 00:06.0  ·  EDITING</text>
+  <text x="769" y="467" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Make every word land.</text>
+  <rect x="112" y="557" width="976" height="65" rx="15" fill="#20233f" stroke="#3b3d5d"/>
+  <text x="136" y="583" fill="#aeb4d2" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1">CAPTION TRACK</text>
+  <path d="M136 600h927" stroke="#515578" stroke-width="5" stroke-linecap="round"/>
+  <path d="M136 600h550" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#53577e">
+    <rect x="192" y="592" width="85" height="16" rx="5"/><rect x="288" y="592" width="112" height="16" rx="5"/>
+    <rect x="411" y="592" width="126" height="16" rx="5"/><rect x="548" y="592" width="131" height="16" rx="5"/>
+    <rect x="690" y="592" width="108" height="16" rx="5"/><rect x="809" y="592" width="121" height="16" rx="5"/>
+  </g>
+  <path d="M689 581v36" stroke="#8f6cff" stroke-width="2"/>
+</svg>

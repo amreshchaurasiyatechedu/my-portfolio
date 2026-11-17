@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">TruthLens AI evidence review illustration</title>
+  <desc id="description">An evidence review workspace illustration showing an input panel, source records, and a separate AI interpretation panel.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e9f3f3"/>
+      <stop offset="1" stop-color="#f4f3fc"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" x2="1">
+      <stop offset="0" stop-color="#165a70"/>
+      <stop offset="1" stop-color="#247f83"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#173a4a" flood-opacity=".13"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="700" fill="url(#background)"/>
+  <circle cx="1100" cy="68" r="188" fill="#d5efea" opacity=".7"/>
+  <circle cx="78" cy="685" r="190" fill="#e0e1fa" opacity=".56"/>
+  <rect x="85" y="51" width="1030" height="598" rx="25" fill="#fff" filter="url(#shadow)"/>
+  <path d="M85 76a25 25 0 0 1 25-25h980a25 25 0 0 1 25 25v57H85z" fill="#f9fbfc"/>
+  <circle cx="121" cy="91" r="18" fill="#e4f2f1"/>
+  <path d="M113 91h16m-8-8v16" stroke="#176379" stroke-width="3" stroke-linecap="round"/>
+  <text x="153" y="98" fill="#173c4a" font-family="Arial,sans-serif" font-size="20" font-weight="700">TruthLens</text>
+  <text x="879" y="96" fill="#6d8190" font-family="Arial,sans-serif" font-size="12" font-weight="700">EVIDENCE WORKSPACE</text>
+  <rect x="106" y="156" width="988" height="119" rx="17" fill="#f7fafb" stroke="#e1eaec"/>
+  <text x="132" y="186" fill="#315364" font-family="Arial,sans-serif" font-size="13" font-weight="700">SUBMITTED CLAIM OR ARTICLE URL</text>
+  <rect x="132" y="201" width="750" height="49" rx="10" fill="#fff" stroke="#d9e4e8"/>
+  <text x="151" y="231" fill="#8a9ba6" font-family="Arial,sans-serif" font-size="14">Enter text or paste an article URL to investigate…</text>
+  <rect x="896" y="201" width="168" height="49" rx="11" fill="url(#brand)"/>
+  <circle cx="921" cy="224" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+  <path d="m926 229 6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <text x="942" y="230" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Review evidence</text>
+  <rect x="106" y="295" width="604" height="321" rx="17" fill="#fff" stroke="#e1eaec"/>
+  <text x="133" y="332" fill="#183d4b" font-family="Arial,sans-serif" font-size="17" font-weight="700">Retrieved source records</text>
+  <text x="133" y="355" fill="#8799a6" font-family="Arial,sans-serif" font-size="12">Review provider results in their original context</text>
+  <rect x="132" y="377" width="552" height="88" rx="13" fill="#fbfcfd" stroke="#e3eaed"/>
+  <rect x="149" y="393" width="37" height="37" rx="11" fill="#eef4ff"/>
+  <path d="M159 403h17v18h-17zM162 408h11m-11 5h11" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round"/>
+  <text x="202" y="407" fill="#405867" font-family="Arial,sans-serif" font-size="12" font-weight="700">FACT-CHECK PROVIDER</text>
+  <text x="202" y="431" fill="#1d3d4b" font-family="Arial,sans-serif" font-size="15" font-weight="700">Published review record</text>
+  <text x="202" y="450" fill="#82939f" font-family="Arial,sans-serif" font-size="11">Publisher and source details available</text>
+  <path d="m647 419 7 7 12-15" fill="none" stroke="#188a69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="132" y="478" width="552" height="88" rx="13" fill="#fbfcfd" stroke="#e3eaed"/>
+  <rect x="149" y="494" width="37" height="37" rx="11" fill="#eef8f3"/>
+  <circle cx="166" cy="512" r="9" fill="none" stroke="#24866b" stroke-width="2"/>
+  <path d="M157 512h18m-9-9v18" stroke="#24866b" stroke-width="1.5"/>
+  <text x="202" y="508" fill="#405867" font-family="Arial,sans-serif" font-size="12" font-weight="700">WEB SEARCH PROVIDER</text>
+  <text x="202" y="532" fill="#1d3d4b" font-family="Arial,sans-serif" font-size="15" font-weight="700">Retrieved source result</text>
+  <text x="202" y="551" fill="#82939f" font-family="Arial,sans-serif" font-size="11">Evidence record · inspect the linked page</text>
+  <path d="m647 520 7 7 12-15" fill="none" stroke="#188a69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="133" y="595" fill="#6f8591" font-family="Arial,sans-serif" font-size="11">Source records are evidence to assess, not proof by themselves.</text>
+  <rect x="731" y="295" width="363" height="321" rx="17" fill="#f5f4fc" stroke="#dedcf2"/>
+  <rect x="756" y="320" width="39" height="39" rx="12" fill="#eceafd"/>
+  <path d="M768 331h15v16h-15zM771 336h9m-9 5h6" fill="none" stroke="#6559b5" stroke-width="2" stroke-linecap="round"/>
+  <text x="811" y="338" fill="#2f3760" font-family="Arial,sans-serif" font-size="16" font-weight="700">AI interpretation</text>
+  <text x="756" y="384" fill="#727996" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1">SEPARATE FROM SOURCES</text>
+  <rect x="756" y="401" width="313" height="91" rx="13" fill="#fff" stroke="#e5e3f2"/>
+  <text x="776" y="430" fill="#53617a" font-family="Arial,sans-serif" font-size="13">Claim review status</text>
+  <rect x="776" y="444" width="116" height="27" rx="13" fill="#fff3df"/>
+  <circle cx="792" cy="457" r="4" fill="#c98728"/>
+  <text x="804" y="461" fill="#9a671e" font-family="Arial,sans-serif" font-size="11" font-weight="700">Evidence-aware</text>
+  <text x="756" y="523" fill="#4a5872" font-family="Arial,sans-serif" font-size="13" font-weight="700">Sources and uncertainty stay visible.</text>
+  <text x="756" y="547" fill="#7c849c" font-family="Arial,sans-serif" font-size="12">An inconclusive result remains possible</text>
+  <text x="756" y="565" fill="#7c849c" font-family="Arial,sans-serif" font-size="12">when available evidence is insufficient.</text>
+  <rect x="756" y="583" width="313" height="1" fill="#dfdeed"/>
+  <text x="756" y="603" fill="#8a8da4" font-family="Arial,sans-serif" font-size="10">Illustrative interface · not an analysis result</text>
+</svg>

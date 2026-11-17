@@ -268,6 +268,21 @@ skillBars.forEach(bar=>{
 const carousel = document.getElementById("carousel");
 
 const scrollAmount = 350;
+const compactCarouselMedia = window.matchMedia("(max-width: 1100px)");
+
+function getCarouselStep(){
+
+    if(!carousel || !compactCarouselMedia.matches) return scrollAmount;
+
+    const firstCard = carousel.querySelector(".project-card");
+
+    if(!firstCard) return scrollAmount;
+
+    const gap = parseFloat(getComputedStyle(carousel).columnGap) || 0;
+
+    return firstCard.getBoundingClientRect().width + gap;
+
+}
 
 
 /* ---------- Next ---------- */
@@ -278,7 +293,7 @@ function scrollRightProjects(){
 
     carousel.scrollBy({
 
-        left:scrollAmount,
+        left:getCarouselStep(),
 
         behavior:"smooth"
 
@@ -295,7 +310,7 @@ function scrollLeftProjects(){
 
     carousel.scrollBy({
 
-        left:-scrollAmount,
+        left:-getCarouselStep(),
 
         behavior:"smooth"
 
@@ -308,7 +323,7 @@ function scrollLeftProjects(){
    AUTO SCROLL
 ========================================== */
 
-let autoScroll = setInterval(autoMove,3000);
+let autoScroll = null;
 
 function autoMove(){
 
@@ -348,6 +363,32 @@ function autoMove(){
 
 }
 
+function stopCarouselAutoScroll(){
+
+    if(autoScroll === null) return;
+
+    clearInterval(autoScroll);
+    autoScroll = null;
+
+}
+
+function startCarouselAutoScroll(){
+
+    if(!carousel || compactCarouselMedia.matches || autoScroll !== null) return;
+
+    autoScroll = setInterval(autoMove,3000);
+
+}
+
+startCarouselAutoScroll();
+
+compactCarouselMedia.addEventListener("change",event=>{
+
+    if(event.matches) stopCarouselAutoScroll();
+    else startCarouselAutoScroll();
+
+});
+
 
 /* ==========================================
    PAUSE ON HOVER
@@ -357,13 +398,13 @@ if(carousel){
 
     carousel.addEventListener("mouseenter",()=>{
 
-        clearInterval(autoScroll);
+        stopCarouselAutoScroll();
 
     });
 
     carousel.addEventListener("mouseleave",()=>{
 
-        autoScroll = setInterval(autoMove,3000);
+        startCarouselAutoScroll();
 
     });
 
@@ -387,45 +428,7 @@ if(carousel){
 }
 
 
-/* ==========================================
-   TOUCH SWIPE SUPPORT
-========================================== */
-
-let startX = 0;
-
-let endX = 0;
-
-if(carousel){
-
-carousel.addEventListener("touchstart",(e)=>{
-
-    startX = e.touches[0].clientX;
-
-});
-
-carousel.addEventListener("touchmove",(e)=>{
-
-    endX = e.touches[0].clientX;
-
-});
-
-carousel.addEventListener("touchend",()=>{
-
-    if(startX - endX > 50){
-
-        scrollRightProjects();
-
-    }
-
-    if(endX - startX > 50){
-
-        scrollLeftProjects();
-
-    }
-
-});
-
-}
+/* Native horizontal scrolling handles touch swipes without an extra scripted jump. */
 
 
 /* ==========================================
@@ -493,7 +496,55 @@ function topPage() {
    SMOOTH NAVIGATION
 ========================================== */
 
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll("#primary-navigation a");
+const primaryNavigation = document.getElementById("primary-navigation");
+const navToggle = document.getElementById("navToggle");
+
+function setMobileNavigationOpen(isOpen,restoreFocus=false){
+
+    if(!primaryNavigation || !navToggle) return;
+
+    const open = isOpen && window.matchMedia("(max-width: 768px)").matches;
+
+    primaryNavigation.classList.toggle("is-open",open);
+    navToggle.setAttribute("aria-expanded",String(open));
+    navToggle.setAttribute("aria-label",open ? "Close navigation menu" : "Open navigation menu");
+
+    if(!open && restoreFocus && window.matchMedia("(max-width: 768px)").matches){
+        navToggle.focus();
+    }
+
+}
+
+navToggle?.addEventListener("click",()=>{
+
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    setMobileNavigationOpen(!isOpen);
+
+});
+
+document.addEventListener("keydown",event=>{
+
+    if(event.key === "Escape" && navToggle?.getAttribute("aria-expanded") === "true"){
+        setMobileNavigationOpen(false,true);
+    }
+
+});
+
+document.addEventListener("click",event=>{
+
+    if(navToggle?.getAttribute("aria-expanded") !== "true") return;
+    if(primaryNavigation?.contains(event.target) || navToggle.contains(event.target)) return;
+
+    setMobileNavigationOpen(false);
+
+});
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth > 768) setMobileNavigationOpen(false);
+
+});
 
 navLinks.forEach(link => {
 
@@ -513,6 +564,8 @@ navLinks.forEach(link => {
 
             });
 
+            setMobileNavigationOpen(false,true);
+
         }
 
     });
@@ -524,45 +577,41 @@ navLinks.forEach(link => {
    ACTIVE NAVBAR
 ========================================== */
 
-const sections = document.querySelectorAll("section");
+function updateActiveNavigation(){
 
-window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    const activePosition = window.scrollY + (header?.offsetHeight || 0) + 24;
+    let activeLink = navLinks[0] || null;
 
-    let currentSection = "";
+    navLinks.forEach(link=>{
 
-    sections.forEach(section => {
+        const target = document.querySelector(link.getAttribute("href"));
 
-        const sectionTop = section.offsetTop - 120;
-
-        const sectionHeight = section.offsetHeight;
-
-        if (
-
-            window.scrollY >= sectionTop &&
-
-            window.scrollY < sectionTop + sectionHeight
-
-        ) {
-
-            currentSection = section.getAttribute("id");
-
+        if(target && target.offsetTop <= activePosition){
+            activeLink = link;
         }
 
     });
 
-    navLinks.forEach(link => {
+    navLinks.forEach(link=>{
 
-        link.classList.remove("active");
+        const isActive = link === activeLink;
 
-        if (link.getAttribute("href") === "#" + currentSection) {
+        link.classList.toggle("active",isActive);
 
-            link.classList.add("active");
-
+        if(isActive){
+            link.setAttribute("aria-current","location");
+        }else{
+            link.removeAttribute("aria-current");
         }
 
     });
 
-});
+}
+
+window.addEventListener("scroll",updateActiveNavigation,{passive:true});
+window.addEventListener("load",updateActiveNavigation,{once:true});
+updateActiveNavigation();
 
 
 /* ==========================================

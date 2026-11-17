@@ -22,7 +22,7 @@
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=mobile-responsive">
 
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -49,7 +49,7 @@
 
         </div>
 
-        <nav>
+        <nav id="primary-navigation" aria-label="Primary navigation">
 
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -62,7 +62,13 @@
 
         </nav>
 
-        <button id="themeBtn">
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+
+        <button id="themeBtn" type="button" aria-label="Toggle color theme">
 
             🌙
 
@@ -431,6 +437,77 @@
                 </div>
             </article>
 
+            <article class="project-card">
+                <img class="project-image" src="project-assets/student-management-preview.svg" alt="Illustration of the Student Management System academic dashboard" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>Student Management System</h3>
+                    <p class="project-description">A Django academic-management app with role-based dashboards for administrators, teachers, and students.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-python">Python</span>
+                        <span class="tech-badge tech-django">Django</span>
+                        <span class="tech-badge tech-sqlite">SQLite</span>
+                        <span class="tech-badge tech-bootstrap">Bootstrap</span>
+                        <span class="tech-badge tech-chartjs">Chart.js</span>
+                    </div>
+                    <div class="project-card-actions">
+                        <button class="project-detail-button" type="button" data-project-details="project-details-student-management" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                            View Details <span aria-hidden="true">→</span>
+                        </button>
+                        <a class="project-card-repo-link" href="https://github.com/amreshchaurasiyatechedu/student-management-system" target="_blank" rel="noopener noreferrer" aria-label="Open Student Management System GitHub repository">
+                            GitHub <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img class="project-image" src="project-assets/dreamer-ai-preview.svg" alt="Illustration of the Dreamer AI caption editing workspace" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>Dreamer AI</h3>
+                    <p class="project-description">An AI-assisted video-captioning studio for speech transcription, timed caption editing, and subtitle or video export.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-fastapi">FastAPI</span>
+                        <span class="tech-badge tech-whisper">Faster-Whisper</span>
+                        <span class="tech-badge tech-ffmpeg">FFmpeg</span>
+                        <span class="tech-badge tech-openai">OpenAI API (optional)</span>
+                    </div>
+                    <div class="project-card-actions">
+                        <button class="project-detail-button" type="button" data-project-details="project-details-dreamer-ai" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                            View Details <span aria-hidden="true">→</span>
+                        </button>
+                        <a class="project-card-repo-link" href="https://github.com/amreshchaurasiyatechedu/Dreamer-AI" target="_blank" rel="noopener noreferrer" aria-label="Open Dreamer AI GitHub repository (private)">
+                            GitHub <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img class="project-image" src="project-assets/truthlens-ai-preview.svg" alt="Illustration of the TruthLens AI evidence review workspace" loading="lazy" decoding="async">
+                <div class="project-card-content">
+                    <h3>TruthLens AI</h3>
+                    <p class="project-description">An evidence-first claim investigation tool that presents retrieved sources separately from optional AI interpretation.</p>
+                    <div class="project-tech-list" aria-label="Technologies used">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-mongodb">MongoDB</span>
+                        <span class="tech-badge tech-google">Google Fact Check Tools</span>
+                        <span class="tech-badge tech-llm">OpenAI-compatible LLM</span>
+                    </div>
+                    <div class="project-card-actions">
+                        <button class="project-detail-button" type="button" data-project-details="project-details-truthlens-ai" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">
+                            View Details <span aria-hidden="true">→</span>
+                        </button>
+                        <a class="project-card-repo-link" href="https://github.com/amreshchaurasiyatechedu/truthlens-ai" target="_blank" rel="noopener noreferrer" aria-label="Open TruthLens AI GitHub repository (private)">
+                            GitHub <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
         </div>
 
         <button class="carousel-btn right" type="button" aria-label="Scroll projects right" onclick="scrollRightProjects()">
@@ -602,6 +679,154 @@
                     <a class="project-detail-link" href="https://click-craft-studio.netlify.app/" target="_blank" rel="noopener noreferrer">
                         Visit live website <span aria-hidden="true">↗</span>
                     </a>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-student-management">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Academic management</p>
+                <h3 id="project-modal-title">Student Management System</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/student-management-preview.svg" alt="Illustrative Student Management System dashboard concept">
+                <figcaption>Project-specific illustration; the repository does not include product screenshots.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A Django web application that brings student, staff, and academic administration workflows into one role-based system.</p>
+                    <h4>Problem addressed</h4>
+                    <p>It centralizes common academic records and activities so administrators, teachers, and students can work through role-appropriate views.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>HOD/administrator tools for users and academic records, with access to attendance, leave, and feedback workflows.</li>
+                        <li>Staff workflows for attendance and results, with student access limited to assigned teaching work.</li>
+                        <li>Student views for personal profiles, attendance, results, leave requests, and feedback.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-python">Python 3.13</span>
+                        <span class="tech-badge tech-django">Django 6.1.2</span>
+                        <span class="tech-badge tech-sqlite">SQLite</span>
+                        <span class="tech-badge tech-html">HTML</span>
+                        <span class="tech-badge tech-css">CSS</span>
+                        <span class="tech-badge tech-javascript">JavaScript</span>
+                        <span class="tech-badge tech-bootstrap">Bootstrap 4</span>
+                        <span class="tech-badge tech-adminlte">AdminLTE 3</span>
+                        <span class="tech-badge tech-jquery">jQuery</span>
+                        <span class="tech-badge tech-chartjs">Chart.js</span>
+                    </div>
+                    <h4>How it works</h4>
+                    <p>A custom Django user model assigns HOD, Staff, and Student roles. Django views and ORM models handle the workflows and records; the project settings configure SQLite. MySQL is not configured as the database backend.</p>
+                    <a class="project-detail-link" href="https://github.com/amreshchaurasiyatechedu/student-management-system" target="_blank" rel="noopener noreferrer">
+                        View public GitHub repository <span aria-hidden="true">↗</span>
+                    </a>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-dreamer-ai">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">AI-assisted video captioning</p>
+                <h3 id="project-modal-title">Dreamer AI</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/dreamer-ai-preview.svg" alt="Illustrative Dreamer AI caption editing workspace">
+                <figcaption>Project-specific illustration; no product screenshot or verified hosted demo was found in the repository.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A video-captioning workspace that transcribes speech, creates editable timed captions, and exports subtitle files or captioned video.</p>
+                    <h4>Problem addressed</h4>
+                    <p>It combines transcription, caption adjustment, styling, and rendering in one workflow instead of requiring a separate tool for each step.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Create and manage captioning projects and upload media for transcription.</li>
+                        <li>Generate word-timed transcript segments, then edit captions and preview styling.</li>
+                        <li>Export SRT subtitles or render a captioned MP4 with FFmpeg.</li>
+                        <li>Generate transcript-based caption suggestions locally or through the optional OpenAI integration.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies and models</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-python">Python</span>
+                        <span class="tech-badge tech-fastapi">FastAPI</span>
+                        <span class="tech-badge tech-sqlalchemy">SQLAlchemy</span>
+                        <span class="tech-badge tech-sqlite">SQLite by default</span>
+                        <span class="tech-badge tech-postgres">PostgreSQL supported</span>
+                        <span class="tech-badge tech-whisper">Faster-Whisper</span>
+                        <span class="tech-badge tech-ffmpeg">FFmpeg</span>
+                        <span class="tech-badge tech-openai">OpenAI API (optional)</span>
+                    </div>
+                    <h4>How it works</h4>
+                    <p>The React/TypeScript client uses a FastAPI backend. Local transcription defaults to Faster-Whisper's <code>small</code> model with word timestamps. Optional OpenAI models include <code>whisper-1</code> for transcription, <code>gpt-4o-transcribe-diarize</code> for diarization, and <code>gpt-4o-mini</code> for caption suggestions. SQLAlchemy stores project data in SQLite by default, with PostgreSQL configurable; FFmpeg handles video rendering.</p>
+                    <a class="project-detail-link" href="https://github.com/amreshchaurasiyatechedu/Dreamer-AI" target="_blank" rel="noopener noreferrer">
+                        View GitHub repository <span aria-hidden="true">↗</span>
+                    </a>
+                    <p>Private repository; GitHub access may be required to view the source.</p>
+                </section>
+            </div>
+        </article>
+    </template>
+
+    <template id="project-details-truthlens-ai">
+        <article class="project-detail">
+            <div class="project-detail-header">
+                <p class="project-detail-kicker">Evidence-first claim investigation</p>
+                <h3 id="project-modal-title">TruthLens AI</h3>
+            </div>
+            <figure class="project-detail-preview">
+                <img src="project-assets/truthlens-ai-preview.svg" alt="Illustrative TruthLens AI evidence review workspace">
+                <figcaption>Project-specific illustration; deployment templates are present, but no live deployment was verified.</figcaption>
+            </figure>
+            <div class="project-detail-grid">
+                <section class="project-detail-block">
+                    <h4>Overview</h4>
+                    <p>A claim-investigation application designed to keep retrieved evidence distinct from AI-generated interpretation and to show uncertainty when evidence is insufficient.</p>
+                    <h4>Problem addressed</h4>
+                    <p>It helps users examine claims alongside source records rather than treating an unsupported model answer as proof.</p>
+                    <h4>Main features</h4>
+                    <ul>
+                        <li>Analyze submitted text or article URLs and retrieve Google Fact Check Tools records and optional web-search results.</li>
+                        <li>Optionally extract checkable claims and compare them with retrieved evidence; source citations and AI output are validated separately.</li>
+                        <li>Save and revisit reports, ask questions about a report, and export report data.</li>
+                        <li>Optional image checks include metadata/integrity inspection, consent-based external providers, and local face-region highlighting; face detection does not identify people or prove authenticity.</li>
+                    </ul>
+                </section>
+                <section class="project-detail-block">
+                    <h4>Technologies and providers</h4>
+                    <div class="project-tech-list project-tech-list-detail">
+                        <span class="tech-badge tech-react">React</span>
+                        <span class="tech-badge tech-typescript">TypeScript</span>
+                        <span class="tech-badge tech-vite">Vite</span>
+                        <span class="tech-badge tech-tailwind">Tailwind CSS</span>
+                        <span class="tech-badge tech-node">Node.js</span>
+                        <span class="tech-badge tech-express">Express</span>
+                        <span class="tech-badge tech-mongodb">MongoDB</span>
+                        <span class="tech-badge tech-mongoose">Mongoose</span>
+                        <span class="tech-badge tech-google">Google Fact Check Tools API</span>
+                        <span class="tech-badge tech-tavily">Tavily-compatible search (optional)</span>
+                        <span class="tech-badge tech-llm">OpenAI-compatible LLM (optional)</span>
+                        <span class="tech-badge tech-mediapipe">MediaPipe Tasks Vision</span>
+                    </div>
+                    <h4>How it works</h4>
+                    <p>The React/TypeScript client communicates with a Node.js/Express API that stores application data in MongoDB through Mongoose. Configured search providers return source records; an optional OpenAI-compatible chat-completions provider extracts claims and reasons over those records. The configurable model defaults to <code>gpt-4o-mini</code>. MediaPipe's bundled BlazeFace model supports local face-region highlighting in the browser.</p>
+                    <a class="project-detail-link" href="https://github.com/amreshchaurasiyatechedu/truthlens-ai" target="_blank" rel="noopener noreferrer">
+                        View GitHub repository <span aria-hidden="true">↗</span>
+                    </a>
+                    <p>Private repository; GitHub access may be required to view the source.</p>
                 </section>
             </div>
         </article>
@@ -785,7 +1010,7 @@
 
     <!-- JavaScript -->
 
-    <script src="JavaScript.js"></script>
+    <script src="JavaScript.js?v=mobile-responsive"></script>
 
 </body>
 
